@@ -1,0 +1,164 @@
+% \documentclass{report}
+% \usepackage{amsthm}
+% \usepackage{amsmath}
+% \usepackage{amsfonts}
+% \usepackage{xcolor}
+% \usepackage{mathrsfs}
+% \newtheorem*{remark}{Remark}
+% \newtheorem{theorem}{Theorem}
+% \newtheorem{definition}[theorem]{Definition}
+% \newtheorem{proposition}[theorem]{Proposition}
+% \newtheorem{corollary}[theorem]{Corollary}
+% \numberwithin{theorem}{subsection}
+% \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+% \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+% \renewcommand{\Re}{\operatorname{Re}}
+% \renewcommand{\Im}{\operatorname{Im}}
+% \begin{document}
+\section{F.Riesz Factorization Theorem}
+This section can be seen as a generalization of first section. In first section, we talk about norm convergence and
+pointwise convergence when boundary function $f$ is in $L^p$, $1< p\leq \infty$ and $f$ is a measure. This conclusion is for harmonic function.
+Harmonic function has series representation:
+\begin{equation*}
+    u(re^{i\theta})=\sum_{k=-\infty}^\infty{a_kr^{\abs{k}}e^{i k\theta}}
+\end{equation*}
+and we can derive Poisson representation $u(re^{i\theta})=P_r(f)$. Since holomorphic function also has series representation:
+\begin{equation*}
+    u(re^{i\theta})=\sum_{k=0}^\infty{a_kr^{k}e^{i k\theta}}
+\end{equation*}
+, we can consider this representation as special case of harmonic
+function with $a_k=0$ for $k<0$. Poisson representation is also hold for holomorphic function, thus the converge result is
+hold also for holomorphic function. The following theorem is a summary of these results.
+\begin{theorem}[theorem 3.1 in book]\label{theorem 3.1}
+    Let $F\in H^p$ with $1<p\leq \infty$. Then:
+    \begin{enumerate}
+        \item For almost every $t$. the limit
+              \begin{equation*}
+                  F(e^{it})=\lim{F(z)} ~as ~z\to e^{it} ~N.T.
+              \end{equation*}
+              exists. The function $f(t)=F(e^{it})$ belongs to $L^p([-\pi,\pi])$ and $F=P(f)$
+        \item If $p<\infty$:
+              \begin{equation*}
+                  \int_{-\pi}^\pi{\abs{F(re^{it})-F(e^{it})}^p d t} \to 0~as~r\to 1
+              \end{equation*}
+              If $p=\infty$, $F(re^{it})\to F(e^{it})$ in the w*-topology of $L^\infty$ as $r\to 1$.\par
+              For each $1<p\leq\infty$: $\norm{F}_{H^p}=\norm{f}_p$.
+        \item $F$ is the Cauchy integral of its boundary function, that is:
+              \begin{equation*}
+                  F(z)=\frac{1}{2\pi i}\int_{\abs{\xi}=1}{\frac{F(\xi)}{\xi-z}d\xi}=\frac{1}{2\pi}\int_{-\pi}^{\pi}{\frac{F(e^{it})}{e^{it}-z}e^{it}d t}
+              \end{equation*}
+    \end{enumerate}
+
+\end{theorem}
+\begin{remark}
+    For first statement in theorem \ref{theorem 3.1}, N.T. limit holds for $p=1$, but $P(f)$ may not be hold.
+\end{remark}
+\begin{remark}
+    $u(re^{it})=P_r(t)$ is neither in $H^p$ nor $N$. $P_r(t)$ is harmonic but not holomorphic.
+\end{remark}
+In this section
+we will extend this result to $p\leq 1$. The main idea is to factorize $F(z)$ to a Blaschke product $B(z)$ and a non-vanish
+function $H(z)$.
+\subsection{Result of non-vanish case}\label{non-vanish case}
+Suppose that $F\in H^p$, $\frac{1}{2}\leq p<1$. If $F$ does not vanish in $D$. Then $F(z)=e^{f(z)}$ for some holomorphic function
+$f$. Let $G(z)=e^{\frac{f(z)}{2}}$, we have $F(z)=G(z)^2$, $G(z)\in H^{2p}$ and $\norm{G}^2_{H^{2p}}=\norm{F}_{H^p}$. Since $2p\geq 1$, we have
+$G(e^{it})=\lim{G(z)}$ a.e. as $z\to e^{it}$ N.T.. It follows that $F(e^{it})=\lim{F(z)}$ a.e. as $z\to e^{it}$ N.T.\par
+We know that $\int_{-\pi}^{\pi}{\abs{F(re^{it})-F(e^{it})}^p d t}\to 0$ as $r\to 1$ if $p>1$. Suppose that $F\in H^p$, $\frac{1}{2}\leq p<1$
+and we have $F(z)=G(z)^2$ as before, then:
+\begin{align*}
+         & \int_{-\pi}^{\pi}{\abs{F(re^{it})-F(e^{it})}^p d t}                                                                                        \\
+    =    & \int_{-\pi}^{\pi}{\abs{G(re^{it})^2-G(e^{it})^2}^p d t}                                                                                    \\
+    =    & \int_{-\pi}^{\pi}{\abs{G(re^{it})+G(e^{it})}^p\abs{G(re^{it})-G(e^{it})}^p d t}                                                            \\
+    \leq & (\int_{-\pi}^{\pi}{\abs{G(re^{it})+G(e^{it})}^{2p}d t})^{\frac{1}{2}}(\int_{-\pi}^{\pi}{\abs{G(re^{it})-G(e^{it})}^{2p}d t})^{\frac{1}{2}} \\
+    \leq & (\int_{-\pi}^{\pi}{(2\abs{G(e^{it})})^{2p}d t})^{\frac{1}{2}}(\int_{-\pi}^{\pi}{\abs{G(re^{it})-G(e^{it})}^{2p}d t})^{\frac{1}{2}}         \\
+    \leq & 2^p\norm{G}^p_{H^{2p}}(\int_{-\pi}^{\pi}{\abs{G(re^{it})-G(e^{it})}^{2p}d t})^{\frac{1}{2}}\to 0 ~as ~r\to 1
+\end{align*}
+We conclude that $F\in H^p$, $\frac{1}{2}\leq p<1$. If $F$ does not vanish in $D$. Then there is a boundary function $F(e^{it})$, $F(z)$ converges
+to $F(e^{it})$ both in pointwise sense and norm sense.\par
+\begin{remark}
+    There is a basic inequality, used also in proving Minkowski inequality: $\abs{a+b}^p\leq 2^p(\abs{a}^p+\abs{b}^p)$ for $p>0$. To prove this we only need to consider two case: $\abs{a}\geq\abs{b}$
+    or $\abs{a}\leq\abs{b}$.
+\end{remark}
+By induction, this conclusion can be extended to $0<p<1$. Thus two types of convergence holds for all $0<p<\infty$.
+\begin{remark}
+    {\color{blue} Author uses Fatou's lemma when $F(z)$ converges to $F(e^{it})$ N.T.. I think we can use this lemma even if it
+        converges radially}.
+\end{remark}
+\subsection{Result of $H^p$ case}
+In the end of last section review, we state three theorems:
+\begin{itemize}
+    \item For $F\in N$, the zeroes $(z_j)$ of $F$ satisfies $\sum_j{(1-\abs{z_j})<\infty}$.
+    \item If $\sum_j{(1-\abs{z_j})<\infty}$ holds, the Blaschke product converges uniformly on each compact subset to a function $B(z)\in H^\infty$ and they have zeroes $(z_j)$.
+    \item $\abs{B(e^{it})}=1$ a.e.
+\end{itemize}
+If we let $H=\frac{F}{B}$, where Blaschke product is formed by zeroes of $F$, then $H$ does not have any zeroes. Besides,
+if $F\in N$, then $H\in N$ and  $\norm{H}_N=\norm{F}_N$. If $F\in H^p$, then $H\in H^p$ and  $\norm{H}_{H^p}=\norm{F}_{H^p}$ (theorem 3.3 in book). Notice now we can use method in section \ref{non-vanish case} on $H$. We have following result:
+\begin{theorem}[theorem 3.6 in book]
+    Let $F\in H^p$ with $0<p\leq \infty$. Then:
+    \begin{enumerate}
+        \item For almost every $t$. the limit
+              \begin{equation*}
+                  F(e^{it})=\lim{F(z)}~as~z\to e^{it}~N.T.
+              \end{equation*}
+              exists. The function $f(t)=F(e^{it})$ belongs to $L^p([-\pi,\pi])$.
+        \item  $\int_{-\pi}^\pi{\abs{F(re^{it})-F(e^{it})}^p d t} \to 0$ as $r\to 1$
+
+        \item $\norm{F}_{H^p}=\lim_{r\to 1}{(\frac{1}{2\pi}\int_{-\pi}^\pi{\abs{F(re^{it})}^p d t})^\frac{1}{p}}=(\frac{1}{2\pi}\int_{-\pi}^\pi{\abs{F(e^{it})}^p d t})^\frac{1}{p}$
+
+    \end{enumerate}
+\end{theorem}
+Another statement is that $F\in H^p$ can be improved to $F\in H^q$ if the boundary function $F(e^{it})\in L^q$ (Corollary 3.7). The hard part of its proof
+is the case $p<q$ and $p\leq 1$. We factorize $F$ as $F=BG^n$, where $np>1$. Since $F(e^{it}) \in L^{q}$ and
+$\abs{G(e^{it})}^n=\abs{F(e^{it})}$, $G(e^{it})\in L^{nq}$. Thus $G\in H^{nq}$ and $F\in H^q$.\par
+\subsection{$H^1$ function and its boundary}
+Recall in section 1, when $u$ is a harmonic function in $D$ and
+\begin{equation*}
+    \sup_{0\leq r<1}{\int_{-\pi}^{\pi}\abs{F(re^{i t})} d t}<\infty
+\end{equation*},
+we can only say $u$ is $P(\mu)$ for some Borel measure and the result can not be improved (consider Poisson kernel). However, if $F\in H^1$,
+in other words $\sup_{0\leq r<1}{\int_{-\pi}^{\pi}\abs{F(re^{i t})} d t}<\infty$ and F is holomorphic,
+then by $F(re^{it})\to F(e^{it})$ in $L^1$. Thus $F$ can be written as the Poisson integral and the Cauchy integral of its boundary function $F(e^{it})$.\par
+\begin{remark}[notes on proof corollary 3.9 in book]
+    {\color{blue} I don't know why
+        \begin{equation*}
+            G(z)=\frac{1}{2\pi}\int_{-\pi}^\pi{\frac{e^{it}+z}{e^{it}-z}\Re{F(e^{it})}d t}
+        \end{equation*}
+        is holomorphic function}.
+\end{remark}
+An consequence of Poisson representation for $H^1$ functions is a famous theorem due to F. and M. Riesz. It says given a Borel measure $\mu$,
+when negative frequencies of Fourier coefficients of $\mu$ is zero, then $\mu$ is absolutely continuous w.r.t. Lebesgue measure, i.e.:
+$d\mu(t)=f(t)d t$ for some $f\in L^1$. This theorem shows the difference between bounded holomorphic function $\sum_{k=0}^\infty{a_kr^{k}e^{i k\theta}}$ and
+bounded harmonic function $\sum_{k=-\infty}^\infty{a_kr^{k}e^{i k\theta}}$ (bounded as $\sup_{0\leq r<1}{\int_{-\pi}^{\pi}\abs{F(re^{i t})} d t}<\infty$).
+The vanish of negative frequencies make bounded harmonic function (or Poisson integral of complex Borel measure) to bounded holomorphic function.\par
+\begin{remark}[notes on proof of corollary 3.11 in book]
+    $f$ is bounded variation, then $f$ can be written as difference of two increasing bounded function. This is equivalent to $f$ can be written as
+    difference of two Borel measure. Thus $f(t)=c+\int_{-\pi}^t{d\mu(s)}$ where $c=f(-\pi)$.\par
+    The integration by parts:
+    \begin{align*}
+        \int_{-\pi}^\pi{e^{ijt}d\mu(t)}= & \left.e^{i j t}\int_{-\pi}^t{d\mu(s)}\right\rvert_{-\pi}^{\pi}-i j\int_{-\pi}^\pi{g(t)e^{ijt}dt}                         \\
+        =                                & \left(e^{i j\pi}\int_{-\pi}^\pi{d\mu(s)}-e^{-i j\pi}\int_{-\pi}^{-\pi}{d\mu(s)}\right)-i j\int_{-\pi}^\pi{g(t)e^{ijt}dt} \\
+        =                                & {\color{blue}e^{i j\pi}\int_{-\pi}^\pi{d\mu(s)}}-i j\int_{-\pi}^\pi{(F(e^{it})-c)e^{ijt}dt}                              \\
+        =                                & {\color{blue}e^{i j\pi}\int_{-\pi}^\pi{d\mu(s)}}-\lim_{r\to 1}{i j\int_{-\pi}^\pi{F(re^{it})e^{ijt}dt}}                  \\
+        =                                & {\color{blue}e^{i j\pi}\int_{-\pi}^\pi{d\mu(s)}}
+    \end{align*}
+    The limit in fourth equality is by $F\in H^1$, $F(re^{it})\to F(e^{it})$ in $L^1$. This limit is 0 since $F\in H^1$, the negative frequencies are 0.
+    $e^{i j\pi}\int_{-\pi}^\pi{d\mu(s)}=e^{i j\pi}g(\pi)$ is 0 since $f(\pi)=f(-\pi)+g(\pi)$ and $f(\pi)=f(-\pi)$.
+\end{remark}
+Corollary 3.11 in book shows a condition when bounded variation implies absolutely continuity. This Corollary emphases again 'holomorphic condition' or
+vanish of negative frequencies makes a Borel measure absolutely continuous. Theorem 3.12 in book says that $F'\in H^1$ is the necessary and
+sufficient condition of holomorphic $F\in H(D)$ is absolutely continuous on boundary.
+\begin{remark}[notes on proof of theorem 3.12 in book]
+    $F\in H^1$ implies $F'\in H(D)$. Since
+    \begin{equation*}
+        \sup_{0\leq r<1}{\int_{-\pi}^{\pi}{\abs{F(re^{i t})} d t}}=\sup_{0\leq r<1}{\int_{-\pi}^{\pi}{\abs{ire^{it}F(re^{i t})} d t}}
+    \end{equation*}
+    , $F'(z)\in H^1$ if and only if $izF'(z)\in H^1$. \par
+    {\color{blue} I don't know why the difference is harmonic and continuous at the origin, it has to be a constant
+        c}.\par
+\end{remark}\par
+There is a corollary of Theorem 3.12 in book which is useful in next section.
+\begin{corollary}[corollary 3.13 in book]
+    Let $\Gamma$ be a Jordan curve and let $F$ be a conformal map from $D$ to interior domain bounded by a Jordan curve $\Gamma$. Then $\Gamma$ is rectifiable if and only if $F'\in H^1$.
+\end{corollary}
+
+% \end{document}

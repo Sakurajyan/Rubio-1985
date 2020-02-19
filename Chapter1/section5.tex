@@ -1,0 +1,35 @@
+\documentclass{report}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{xcolor}
+\usepackage{mathrsfs}
+\newtheorem*{remark}{Remark}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\numberwithin{theorem}{subsection}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\begin{document}
+\section{The Conjugate Function}
+In section 1, given a integrable function $f$, we know the harmonic function $u=P(f)$ determines a holomorphic function $F$ up to a constant $c$ if we consider $u$
+as the real part of $F$. Let $v(re^{it})=F(re^{it})$ with $v(0)=0$. Then we can define the conjugate function of $f$ to be:
+\begin{equation*}
+    \tilde{f}(t)=\lim_{t\to 1}{v(re^{it})}
+\end{equation*}
+The next theorem ensures the above limit exists for a.e. t:
+\begin{theorem}[theorem 5.2 in book]
+    Let $F\in H(D)$ be such that $\Re{F(z)}\geq 0$ for every $z\in D$. Then $F$ has N.T. limits at almost every boundary point.
+\end{theorem}
+\begin{remark}[notes on proof of theorem 5.2 in book]
+    
+\end{remark}
+\subsection{Estimate conjugate function $\tilde{f}$ for $f\in L^p$, $1<p<\infty$}
+\subsection{Estimate conjugate function $\tilde{f}$ for $f\in L^1$}
+\subsection{Conjugate function and $H^p$ space}
+\subsection{Conjugate function operator}
+\end{document}

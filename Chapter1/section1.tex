@@ -1,0 +1,183 @@
+% \documentclass{report}
+% \usepackage{amsthm}
+% \usepackage{amsmath}
+% \usepackage{amsfonts}
+% \usepackage{xcolor}
+% \newtheorem*{remark}{Remark}
+% \newtheorem*{definition}{Definition}
+% \newtheorem{theorem}{Theorem}
+% \numberwithin{theorem}{subsection}
+% \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+% \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+% \begin{document}
+\chapter{Classical Theory of Hardy Space}
+% In this chapter we will talk about the connection between properties of harmonic or analytic function in the unit disc
+% $D$ of the complex plane and the Fourier Analysis of their boundary values in the torus $T=\partial D$.\par
+% The two important tools are Riesz factorization and Szego factorization. These tools let us analyze function in space 
+% similar with $L^p$ for $p<1$. In Hardy space, we talk about an important element, conjugate function. We will also 
+% meet our first example of weighted norm inequality: Helson-Szego theorem.
+\section{Harmonic Functions, Poisson Representation}
+In plane case, we can rewrite harmonic condition: $\Delta F=0$ as
+$\Delta F=(\frac{\partial}{\partial x}-i\frac{\partial}{\partial y})(\frac{\partial}{\partial x}+i\frac{\partial}{\partial y})F=0$. Notices the equation $\frac{\partial}{\partial x}+i\frac{\partial}{\partial y}=0$ is equivalent to the Cauchy-Riemann equations for function $F=u+iv$.\par
+\begin{remark}[holomorphic indicates harmonic]
+    If function F satisfies C-R equations, then F satisfies Laplace equation for $\mathbb{C}$. And if F satisfies $\Delta=0$, so does $\bar{F}$. Thus $F$ and $\bar{F}$ are all harmonic functions.
+    Besides, the real and imaginary part of F, u and v also satisfy $\Delta=0$, means u and v are harmonic functions.
+\end{remark}
+\begin{remark}[harmonic indicates holomorphic]
+    Assume that u satisfies $\Delta=0$. If we let $v_x=-u_y$ and $v_y=u_x$, then we have $v_{xy}=v_{yx}$, which indicates exists of v (equivalent of
+    Fubini's Theorem and the equality of the mixed partial derivatives). And $v_{xx}+v_{yy}=-u_{yx}+u_{xy}=0$ indicates $v$ is also
+    harmonic. $v$ is determined up to an additive constant, and $F=u+iv$ is holomorphic.
+\end{remark}
+\begin{remark}
+    Later we will see holomorphic function is the special case of harmonic function.
+\end{remark}
+If $u$ is a real harmonic function, by above remark, we know $u=\operatorname{Re}{F}$ for some holomorphic function $F(z)=\sum_{k=0}^{\infty}{c_k z^k}$. Then we can derive the series representation of $u$:
+\begin{equation}\label{series of harmonic function}
+    u(re^{i\theta})=\sum_{k=-\infty}^\infty{a_kr^{\abs{k}}e^{i k\theta}}
+\end{equation}
+and {\color{blue}it converges uniformly on compact subsets of $D(0,R)$}.
+\begin{remark}[uniformly converge on compact subsets]
+    Using mean value property, sequence of holomorphic functions which uniformly converge on compact subsets, the limit is a holomorphic function. \par
+    The partial sum of $u_n(re^{i\theta})=\sum_{k=-n}^n{a_kr^{\abs{k}}e^{i k\theta}}$ is obviously harmonic, and it converges uniformly on compact subsets of $D(0,R)$. Thus $u(re^{i\theta})$ is harmonic.
+\end{remark}\par
+
+\subsection{Harmonic function to Poisson integral (or Poisson representation of harmonic function)}\label{harmonic function can be written as Poisson integral}
+Assumed $u$ is harmonic in $D(0,R). $If $R>1$, we can represent $a_k$ in equation \eqref{series of harmonic function} by $u(e^{i t})$ using Fourier analysis. Finally we derive the Poisson kernel and the Poisson representation:
+\begin{equation}
+    u(re^{i\theta})=\frac{1}{2\pi}\int_{-\pi}^\pi{P_r(\theta-t)u(e^{i t})}d t\label{Poisson integral 1}
+\end{equation}
+If $u$ is only harmonic on $D(0,1)$, the equation \eqref{Poisson integral 1} still can be valid in some sense once we add some restriction on $u$.
+\begin{theorem}[theorem 1.3 in book]\label{Poisson representation}
+    Let $u$ be a harmonic function in $D$ such that
+    \begin{equation}\label{Poisson representation condition}
+        \sup_{0\leq r<1}{\int_{-\pi}^{\pi}\abs{u(re^{i t})}^p d t}<\infty
+    \end{equation}
+    for some $p>1$. Then there is a function $f\in L^p$ such that
+    \begin{equation}
+        u(re^{i\theta})=\frac{1}{2\pi}\int_{-\pi}^\pi{P_r(\theta-t)f(t)}d t
+    \end{equation}
+\end{theorem}
+In later section, we will see left side of inequality \eqref{Poisson representation condition} is $H^p$ norm. The proof of Theorem \ref{Poisson representation} shows
+that how dual space, w*-topology and Banach-Alaoglu theorem perform in integral representation. The tricky part is using representation $u(r_nre^{i\theta})$.
+In the proof we also need $P_r(\theta)\in L^{p'}$ which is easy since  $\norm{P_r(\theta)}_\infty=\frac{1+r}{1-r}$ and $L^\infty([-\pi,\pi]) \subset L^{p'}([-\pi,\pi])$.\par
+
+\begin{remark}[some details of proof of theorem \ref{Poisson representation}]
+    In metrizable space, compact and sequentially compact are equivalent.\par
+    Let $f_n(t)=u(r_ne^{i t})$, $(f_n)\subset L^{p'*}$ is in a close ball w.r.t p-norm and Banach-Alaoglu theorem indicates this ball is w* compact. Since w*-compact is equivalent
+    to w*-sequentially compact if this close ball is metrizable in w*-topology, we need to prove this close ball is metrizable in w*-topology.\par
+    Here is a direct proof. Since $L^{p'}$ is separable there is a countable dense set $(g_n)\in L^{p'}$. For every $g\in L^{p'}$, let $\hat{g}(f)=f(g)$ where $f\in L^{p'*}$. Any pair of points $f_1,f_2\in L^{p'*}$ can be separate
+    by some $g_i\in L^{p'}$ (since every $\hat{g_n}$ is w*-continuous, density of $(g_n)$ ensures $f_1,f_2$ can be separate),
+    Thus $(\hat{g_n})$ is a countable family of continuous functions that separates points in $L^{p'*}$.
+    Then we can use metric: $d(f_1,f_2)=\sum_{n=0}^\infty{2^{-n}\abs{f_1(g_n)-f_2(g_n)}}$.\par
+    {\color{blue}We have proved that $L^{p'*}$ is metrizable in w*-topology. Here is a topological thought.  By Nagata-Smirnov metrization theorem, $L^{p'*}$ is regular. we don't know how to shown this property directly. Also, $L^{p'*}$ a basis countably locally finite (by Nagata-Smirnov metrization theorem), we also want to show this property directly. Besides, consider Urysohn metrization theorem, if we have shown $L^{p'*}$ is regular, $L^{p'*}$ is metrizable once we show there is a countable basis for $L^{p'*}$. We don't know if it is possible}.\par
+    Now $(f_n)$ is w* sequentially compact in $L^{p'*}$. This means for any $g\in L^{p'}$, there is a subsequence $(f_{n_k})$
+    and $f\in L^{p'*}$ such that $\int gf_{n_k}\to\int gf$.
+\end{remark}
+\begin{remark}
+    $L^{p'*}\cong L^p$. Thus $L^{p'*}$ is a normed space and $L^{p'*}$ is metrizable.
+\end{remark}
+The $p=1$ case is failed since we can not use w*-topology. $L^1$ is not a separate dual space of some space (Assume $L^1=X^*$. $L^1$ is separable in w*-topology implies $X$ is separable).
+    {\color{blue} One method showing $L^1$ is not  a separate dual space of some space by showing $L^1$ does not have the Radon-Nikodym property (Radon-Nikodym theorem is valid).}
+\begin{remark}
+    {\color{blue} If X is a Banach space, then $X^*$ has the Radon-Nikodym property (RNP) if (and only if) every separable, linear
+        subspace of X has a separable dual (Charles Stegall: The Radon-Nikodym property in Conjugate Banach Space. II)}.
+\end{remark}
+Thus for $p=1$ case, we can not use same argument as Theorem \ref{Poisson representation}. However there is a relative result. $L^1$ can be isometrically imbedded
+in to $M$, the space of Borel measures with bounded variation, which is dual of continuous function with compact support space $C$. Thus we can use same argument to $M$ and $C$ and introduce Poisson-Stieltjes integral.\par
+When we use Borel measures case in Theorem \ref{Poisson representation}, we get \emph{Poisson integral of positive measure for harmonic functions}.
+\begin{equation}
+    u(re^{i\theta})=\frac{1}{2\pi}\int_\pi^\pi{P_r(\theta-t)d\mu(t)} \label{Poisson integral 2}
+\end{equation}
+Here $d\mu(t)$ is the w*-limit of $u(r_ne^{it})d t$. The difference between \eqref{Poisson integral 1} and \eqref{Poisson integral 2} is that in \eqref{Poisson integral 1}, $u$ needs to be harmonic in a little larger
+disk $D(0,R),R>1$, but in \eqref{Poisson integral 2} $u$ needs not. However, this is not hold for all  harmonic functions since we need constraints.\par
+
+\subsection{Poisson integral indicates harmonic}\label{Poisson integral indicates harmonic}
+Using Fourier series, we show that given a function $f\in L^p$, $1\leq p\leq \infty$ (or a complex Borel measure $\mu$), Poisson integral u=$P(f)$ (or u=$P(\mu)$) is real part of a holomorphic function. Thus it is harmonic (Theorem 1.11 (or 1.14) in book). And we give bound of norm of $u$ by norm of $f$ (or measure $\mu$):
+\begin{itemize}
+    \item $\int_{-\pi}^{\pi}\abs{u(re^{i t})}^p d t \leq \int_{-\pi}^{\pi}\abs{f(t)}^p d t~for~p<\infty$
+    \item $\abs{u(z)}\leq \norm{f(t)}_\infty~for~p=\infty$
+    \item $\int_{-\pi}^{\pi}\abs{u(re^{i t})} d t \leq \int_{-\pi}^{\pi}d\abs{\mu}(t)$
+\end{itemize}
+For $f\in L^p$, $p\leq\infty$ case, the equality holds when $r\to 1$ or take sup on right hand side. We prove this in section 3.
+\subsection{Boundary behavior of Poisson integral (or norm convergence and pointwise convergence)}
+\begin{definition}[Dirichlet problem]
+    Given a continuous function $f$ on $\partial D$, we want to find a continuous function on $\bar{D}$, which is harmonic in $D$ and coincides with $f$ on $\partial D$.
+\end{definition}
+From section \ref{Poisson integral indicates harmonic}, we can see $u(re^{i t})=P(f)$ is harmonic function. Roughly speaking, if $u(e^{i t})=f$ (Actually the domain of u is D, so $u(e^{i t})$ is not defined),
+the classical Dirichlet problem is solved. Thus we need to study the boundary behavior of Poisson integral. \emph{The key idea is approximate identity}. Using this idea, we prove the following theorem.\par
+\begin{theorem}[Theorem 1.16 in book]\label{norm convergence}
+    Let $\phi_\alpha$ be an approximate identity on the torus $T$. Then:
+    \begin{enumerate}
+        \item If $f\in L^p([-\pi,\pi])$ with $1\leq p<\infty$ and $f_\alpha$ stands for convolution
+              \begin{equation*}
+                  f_\alpha(\theta)=(f*\phi_\alpha)(\theta)=\frac{1}{2\pi}\int_{-\pi}^{\pi}{f(\theta-t)\phi_\alpha(t)d t}
+              \end{equation*}
+              it follows that $f_\alpha\to f$ in $L^p$, i.e.:
+              \begin{equation*}
+                  \int_{-\pi}^{\pi}{\abs{f_\alpha(t)-f(t)}^p d t}\to 0
+              \end{equation*}
+        \item If f is a continuous $2\pi$-periodic function, we have $f_\alpha\to f$ uniformly on $T$.
+    \end{enumerate}
+\end{theorem}
+Theorem \ref{norm convergence} shows that for $f\in L^p$, $1\leq p<\infty$ or $f\in C$, Poisson integral converges to boundary in norm.
+Following the proof of theorem \ref{norm convergence}, we can show another two case: $p=\infty$ and $f\in M$. The convergence becomes w* convergence (Corollary 1.19 in book).\par
+Here comes another topic: What about pointwise convergence for $P(\mu)$ on boundary if $P(\mu)$ is Poisson-Stieltjes integral? We need a new concept: non-tangentially converge. We show that
+$P(\mu)(z)\to F'(\theta_1)$ as $z\to e^{i\theta_1}$ N.T., where $F(\theta)=\int_0^\theta{d\mu(t)}$ and $F'(\theta_1)$ exists and finite (Theorem 1.20 in book).\par
+You can omit the following remark if you choose not to check the proof in book.
+\begin{remark}[Proof of Theorem 1.20]
+    First we take $c>0$, since we need proof for any $c>0$. This $c$ decides the approach region.\\
+    Then given $\epsilon>0$, we take $\delta$ small enough s.t. $\abs{F(t)}<\epsilon\abs{t}$ when $\abs{t}<\delta$. This $\delta$ can be taken since
+    $F(0)=0$ and $F'(0)=0$.\\
+    If we take $r$ large enough and $re^{i\theta}$ in the region. then $\abs{\theta}$ can be less than $\frac{\delta}{4}$.\\
+    The estimation of $u(re^{i\theta})$ is (we use $F(t)=\int_{-\pi}^{\pi}{d\mu (t)}$ in the third line):
+    \begin{align*}
+        \abs{u(re^{i\theta})}= & \abs{\frac{1}{2\pi}\int_{\delta<\abs{t}\leq\pi}{P_r(\theta-t)d\mu(t)}+\frac{1}{2\pi}\int_{-\delta}^{\delta}{P_r(\theta-t)d\mu(t)}}                     \\
+        \leq                   & \abs{\frac{1}{2\pi}\int_{\delta<\abs{t}\leq\pi}{P_r(\theta-t)d\mu(t)}}+\abs{\frac{1}{2\pi}\int_{-\delta}^{\delta}{P_r(\theta-t)d\mu(t)}}               \\
+        \leq                   & (\sup_{{\color{red}\abs{t}>\delta}}{P_r(\theta-t)})\cdot\frac{1}{2\pi}\int_{\delta<\abs{t}\leq\pi}{d\abs{\mu}(t)}                                      \\
+                               & +\abs{\left.(P_r(\theta-t)\cdot\frac{1}{2\pi}F(t))\right\rvert_{-\delta}^{\delta}
+        +\int_{-\delta}^{\delta}{P_r'(\theta-t)\frac{1}{2\pi}F(t)d t}}                                                                                                                  \\
+        \leq                   & (\sup_{{\color{red}\frac{3\delta}{4}<\abs{t}<\pi+\frac{\delta}{4}}}{P_r(t)})\cdot\frac{1}{2\pi}\int_{-\pi}^{\pi}{d\abs{\mu}(t)}                        \\
+                               & +\abs{\left.(P_r(\theta-t)\cdot\frac{1}{2\pi}F(t))\right\rvert_{-\delta}^{\delta}}+\abs{\int_{-\delta}^{\delta}{(P_r'(\theta-t)\frac{1}{2\pi}F(t))dt}} \\
+        \leq                   & (\sup_{{\color{red}\abs{t}>\frac{3\delta}{4}}}{P_r(t)})\cdot\frac{1}{2\pi}\int_{-\pi}^{\pi}{d\abs{\mu}(t)}                                             \\
+                               & +(\sup_{{\color{red}\abs{t}>\frac{3\delta}{4}}}{P_r(t)})\cdot\frac{1}{2\pi}\int_{-\delta}^{\delta}{d\abs{\mu}(t)}+
+        \abs{\frac{1}{2\pi}\int_{-\delta}^{\delta}{P_r'(\theta-t)F(t)dt}}
+    \end{align*}
+\end{remark}
+Lebesgue-Stieltjes integral is related to bounded increasing function. The integral has decomposition $d\mu(t)=f(t)dt+d\sigma(t)$, $f\in L^1$.
+$\int_0^\theta{d\sigma(t)}$ is a jump function. Thus $F'(\theta)=f(\theta)$ a.e.. Considering $P(f)$, $f\in L^p$, $1\leq p\leq\infty$, or even $P(\mu)$, the integral $P(f)$ or $P(\mu)$ is L-S integral. Thus N.T. convergence holds a.e..\par
+By section \ref{harmonic function can be written as Poisson integral}, Harmonic function with constraints (bounded in some sense) can be written as Poisson integral $P(f)$ or $P(\mu)$ (Corollary 1.10 in book). Thus the theorem of Fatou
+holds: \emph{Any function holomorphic and bounded in D has non-tangential boundary values a.e.}. \par
+The difference between $p=1$ and $p>1$ is the starting point of the theory of Hardy spaces.
+\subsection{Harmonic function in higher dimension}
+A continuous function is harmonic in region $\Omega$ if and only if it satisfies mean value property. For mean value property to harmonic, we need an approximate
+identity. \par
+You can omit the following remark if you choose not to check the proof in book.
+\begin{remark}[Proof of Theorem 1.22]
+    In converse part, we choose region $\Omega_\epsilon$ is to make integral $\int_{\mathbb{R}^n}{u(x_0+r\sigma-y)\phi_\epsilon(y)dy}$ and $\int_{\mathbb{R}^n}{u(x_0-y)\phi_\epsilon(y)dy}$
+    defined. In other words, if $x_0+r\sigma-y$ or $x_0-y$ out of $\Omega$, then $\phi_\epsilon(y)=0$.
+\end{remark}
+A consequence of mean value property is maximum principle. The proof can be given by topological technic: Assumed $u$ attains
+maximum value m in $\Omega$. Let $A=\{x:u(x)=m\}$. Using mean value property, we show every $x$ is interior point of $A$. Thus $A$ is open.
+However, $\Omega\setminus A=\{x:u(x)<m\}$ is open since $u$ is continuous. $\Omega$ is connected and $A$ is not empty. $\Omega\setminus A$ is empty. Thus u is constant.\par
+By maximum principle and minimum principle, we can show $u$ is unique in $\Omega$ if $u$ is harmonic in $\Omega$ and $u$ is continuous on $\partial\Omega$.\par
+We introduce the Poisson kernel $P(x,s)=\frac{1-\abs{x}^2}{\abs{x-s}^n}$ for Dirichlet problem in n dimension. The solution is
+$\frac{1}{\abs{\Sigma_{n-1}}}\int_{\Sigma_{n-1}}{P(x,s)f(s)ds}$.\par
+There is a weaken form of mean value property (or called discrete mean value property). $u$ is harmonic if mean value property is satisfied
+only on a sequence of $r_n\to 0$ (Theorem 1.30 in book). \par
+You can omit the following remark if you choose not to check the proof in book.
+\begin{remark}[Proof of theorem 1.30]
+    {\color{blue}The proof here is not well understand.} The set $K=\{u(x)-v(x)=m:x\in\overline{B(x_0,R)}\}$ is compact in $\overline{B(x_0,R)}$ since K is closed in compact set $\overline{B(x_0,R)}$. We can use
+    finite open cover to prove K is also compact in $B(x_0,R)$. Let $f: K\to\mathbb{R}$, $f(x)=d(x,x_0)$, $f$ is continuous function on compact set
+    K thus it attains maximum value of $f$. Let $x_1$ be a point of the maximum value. {\color{blue}I just can image that for sphere $\partial B(x_1,r)$, only half of
+            the sphere is in K otherwise $f(x_1)$ is not the maximum value. Here $r$ need to be small enough to ensure $\partial B(x_1,r)\subset B(x_0,R)$}. But then $u(x_1)-v(x_1)<m$ if we use integral with $r_j<r$. Thus it is a contradiction. \par
+    {\color{blue} I don't know
+        how the sequence $(r_n)$ plays in this proof}.\par
+\end{remark}
+Then we go to the reflection principle and Liouville theorem.\par
+Finally we go to Dirichlet problem on unbounded domain, in particular $\mathbb{R}_+^{n+1}$. This problem cannot have a unique solution but can have
+a unique bounded solution. And we give Poisson kernel for $\mathbb{R}_+^{n+1}$ by Fourier transform method.
+
+% \end{document}
+
+
+
