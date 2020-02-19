@@ -1,6 +1,7 @@
 \documentclass{report}
 \usepackage{amsthm}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{xcolor}
 \usepackage{mathrsfs}
@@ -10,8 +11,9 @@
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
 \numberwithin{theorem}{subsection}
-\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\norm}[1]{\lVert#1\rVert}
 \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\absl}[1]{\lvert#1\rvert}
 \renewcommand{\Re}{\operatorname{Re}}
 \renewcommand{\Im}{\operatorname{Im}}
 \begin{document}
@@ -19,7 +21,7 @@
 \input{Chapter1/section2}
 \input{Chapter1/section3}
 \input{Chapter1/section4}
-% \input{Chapter1/section5}
+\input{Chapter1/section5}
 \end{document}
 
 

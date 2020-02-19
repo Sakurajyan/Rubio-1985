@@ -1,22 +1,24 @@
-\documentclass{report}
-\usepackage{amsthm}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{xcolor}
-\usepackage{mathrsfs}
-\newtheorem*{remark}{Remark}
-\newtheorem{theorem}{Theorem}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
-\numberwithin{theorem}{subsection}
-\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
-\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
-\renewcommand{\Re}{\operatorname{Re}}
-\renewcommand{\Im}{\operatorname{Im}}
-\begin{document}
+% \documentclass{report}
+% \usepackage{amsthm}
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage{amsfonts}
+% \usepackage{xcolor}
+% \usepackage{mathrsfs}
+% \newtheorem*{remark}{Remark}
+% \newtheorem{theorem}{Theorem}
+% \newtheorem{definition}[theorem]{Definition}
+% \newtheorem{proposition}[theorem]{Proposition}
+% \newtheorem{corollary}[theorem]{Corollary}
+% \numberwithin{theorem}{subsection}
+% \newcommand{\norm}[1]{\lVert#1\rVert}
+% \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+% \newcommand{\absl}[1]{\lvert#1\rvert}
+% \renewcommand{\Re}{\operatorname{Re}}
+% \renewcommand{\Im}{\operatorname{Im}}
+% \begin{document}
 \section{The Conjugate Function}
-In section 1, given a integrable function $f$, we know the harmonic function $u=P(f)$ determines a holomorphic function $F$ up to a constant $c$ if we consider $u$
+In section 1, given a integrable function $f$, $f\in L^1$, we know the harmonic function $u=P(f)$ determines a holomorphic function $F$ up to a constant $c$ if we consider $u$
 as the real part of $F$. Let $v(re^{it})=F(re^{it})$ with $v(0)=0$. Then we can define the conjugate function of $f$ to be:
 \begin{equation*}
     \tilde{f}(t)=\lim_{t\to 1}{v(re^{it})}
@@ -26,10 +28,153 @@ The next theorem ensures the above limit exists for a.e. t:
     Let $F\in H(D)$ be such that $\Re{F(z)}\geq 0$ for every $z\in D$. Then $F$ has N.T. limits at almost every boundary point.
 \end{theorem}
 \begin{remark}[notes on proof of theorem 5.2 in book]
-    
+    {\color{blue}I don't know why $\lim{G(z)}=\lim{\frac{1}{1+F(z)}}$ as $z\to e^{it}$ N.T. is different from 0 a.e. t}.
 \end{remark}
 \subsection{Estimate conjugate function $\tilde{f}$ for $f\in L^p$, $1<p<\infty$}
+The following theorem is key to estimate $\norm{\tilde{f}}_p$ for $1<p<\infty$:
+\begin{theorem}[(theorem 5.3 in book)]\label{Marcel Riesz theorem}
+    For every $p$ with $1<p\leq 2$, there is a constant $C_p$, s.t. for every $F(z)=u(z)+iv(z)$, holomorphic in $D$, with $u(z)>0$ on $D$, $v$ real valued and $v(0)=0$, the inequality:
+    \begin{equation*}
+        \int_{-\pi}^{\pi}{\abs{v(re^{it})}^p d t}\leq C_p \int_{-\pi}^{\pi}{\abs{u(re^{it})}^p d t}
+    \end{equation*}
+    holds for every $0<r<1$.
+\end{theorem}
+\begin{remark}[notes on proof of theorem \ref{Marcel Riesz theorem}]
+    We need inequality $\abs{\sin{\theta}}^p\leq C_p\abs{\cos{\theta}}^p-D_p\cos{(p\theta)}$ for $\abs{\theta}<\frac{\pi}{2}$. To use this
+    inequality, we need $\psi(z)<\frac{\pi}{2}$ where $\psi(z)=\arg{F(z)}$. $u(z)>0$ ensures this inequality hold.\par
+    However, this inequality actually holds if $u\geq 0$ since $u\geq 0$ implies $u>0$ by maximum principle.
+\end{remark}
+Now we give the estimation of $\norm{\tilde{f}}_p$ for $1<p<\infty$:
+\begin{corollary}[Marcel Riesz inequality (corollary 5.5 in book)]\label{thm: Marcel Riesz inequality}
+    For every $p$ with $1<p<\infty$, there is a constant $C_p$, s.t. for each $f\in L^p$:
+    \begin{equation}\label{ieq: Marcel Riesz inequality}
+        \int_{-\pi}^{\pi}{\absl{\tilde{f}(t)}^p d t}\leq B_p \int_{-\pi}^{\pi}{\abs{f(t)}^p d t}
+    \end{equation}
+\end{corollary}
+\begin{remark}[notes on proof of corollary \ref{thm: Marcel Riesz inequality}]
+    First consider $1<p\leq 2$ case. Let $f^+=\max{(f,0)}$, $v_1=\tilde{f^+}$, $f^-=\max{(-f,0)}$ and $v_2=\tilde{f^-}$. Notice $u_1=P(f^+)=0$ and $v_1=0$ if $f^+=0$,
+    $u_2=P(f^-)=0$ and $v_2=0$ if $f^-=0$. Thus we can write:
+    \begin{equation*}
+        {\color{blue}\int_{-\pi}^{\pi}{\absl{v(re^{it})}^p d t}=\int_{-\pi}^{\pi}{\abs{v_1(re^{it})}^p+\abs{v_2(re^{it})}^p d t}}
+    \end{equation*}
+    \begin{equation*}
+        {\color{blue}\int_{-\pi}^{\pi}{\absl{u(re^{it})}^p d t}=\int_{-\pi}^{\pi}{\abs{u_1(re^{it})}^p+\abs{u_2(re^{it})}^p d t}}
+    \end{equation*}
+    Since $\int{\abs{v_1(re^{it})}}\leq C_p\int{\abs{u_1(re^{it})}}$ and $\int{\abs{v_2(re^{it})}}\leq C_p\int{\abs{u_2(re^{it})}}$ by theorem
+    \ref{Marcel Riesz theorem}, we have $\int{\abs{v(re^{it})}}\leq C_p\int{\abs{u(re^{it})}}$. Fatou lemma yields inequality \eqref{ieq: Marcel Riesz inequality}.\par
+    For $2<p<\infty$ case, we use $\norm{v(re^{i\cdot})}_p=\sup_{\norm{g}_{p'}\leq 1}{\int{v(re^{it})g(t)d t}}$ by Hahn-Banach theorem.\par
+    Let $h=P(g)$ and $w=\tilde{h}$ with $w(0)=0$. Since $h+iw\in H^{p'}$, $h+iw$ can be written as Poisson integral of boundary function, $h(re^{it})+iw(re^{it})=P(g+i\tilde{g})$. Thus we have $w=P(\tilde{g})$.\par
+    {\color{blue}By Holder inequality, We have:
+        \begin{align*}
+                 & \int{\abs{(u(rz)+iv(rz))(h(z)+iw(z))-(u(re^{it})+iv(re^{it})) (g(t)+i\tilde{g}(t))}}                                     \\
+            \leq & \int\vert (u(r z)+iv(r z))(h(z)+i w(z))-(u(r z)+iv(r z))(g(t)+i\tilde{g}(t))                                             \\
+                 & +(u(r z)+iv(r z))(g(t)+i\tilde{g}(t))(u(re^{it})+iv(re^{it}))(g(t)+i\tilde{g}(t)) \vert                                  \\
+            \leq & \int\abs{u(rz)+iv(rz)}\abs{((h(z)+iw(z))-(g(t)+i\tilde{g}(t))}                                                           \\
+                 & +\int\abs{((u(rz)+iv(rz))-(u(re^{it})+iv(re^{it})))}\abs{(g(t)+i\tilde{g}(t))}                                           \\
+            \leq & (\int\abs{u(rz)+iv(rz)}^p)^\frac{1}{p}  (\int\abs{((h(z)+iw(z))-(g(t)+i\tilde{g}(t)))}^{p'})^\frac{1}{p'}                \\
+                 & +(\int\abs{((u(rz)+iv(rz))-(u(re^{it})+iv(re^{it})))}^p)^\frac{1}{p}  (\int\abs{(g(t)+i\tilde{g}(t))}^{p'})^\frac{1}{p'}
+        \end{align*}
+        We have $(\int\abs{((h(z)+iw(z))-(g(t)+i\tilde{g}(t)))}^{p'})^\frac{1}{p'}\to 0$ since $h+iw\in H^{p'}$.\\ We have$(\int\abs{(u(rz)+iv(rz))-(u(re^{it})+iv(re^{it}))}^p)^\frac{1}{p}\to 0$ since $\abs{re^{it}}<1$.}\par
+    Thus $(u(rz)+iv(rz))(h(z)+iw(z))\to (u(re^{it})+iv(re^{it})) (g(t)+i\tilde{g}(t))$ in $L^1$.
+\end{remark}
+Our final result is estimation of imaginary part of holomorphic function:
+\begin{corollary}[corollary 5.8 in book]
+    If $F\in H(D)$, then for every $1<p<\infty$ and every $0\leq r<1$:
+    \begin{equation*}
+        (\frac{1}{2\pi}\int_{-\pi}^{\pi}{\abs{\Im{F(re^{it})}}^p d t})^\frac{1}{p}\leq B_p^\frac{1}{p}(\frac{1}{2\pi}\int_{-\pi}^{\pi}{\abs{\Re{F(re^{it})}}^p d t})^\frac{1}{p}+\abs{\Im{F(0)}}
+    \end{equation*}
+\end{corollary}
 \subsection{Estimate conjugate function $\tilde{f}$ for $f\in L^1$}
+The corollary \ref{thm: Marcel Riesz inequality} does not hold for $p=1$. For example, Poisson kernel $P_r(t)$ is in $L^1$, $\norm{P_r(t)}_1=2\pi$ but conjugate
+Poisson kernel $Q_r(t)$ is not, $\int{\abs{Q_r(t)}}=4\log{\frac{1+r}{1-r}}$.
+\begin{remark}
+    By Hahn-Banach theorem and duality of $L^p$, for $v\in L^1$, $\int{\abs{v}}=\sup_{\norm{g}_\infty\leq 1}{\abs{\int{vg}}}$.
+        {\color{blue}I don't know how the author concludes conjugate function operator is not bounded in $L^\infty$}.
+\end{remark}
+For $f\in L^1$, conjugate operator is of weak type $(1,1)$ (theorem 5.9 in book) and type $(1,p)$ for $0<p<1$ (corollary 5.10 in book).
+\begin{remark}[notes on proof of theorem 5.9 in book]
+    $v(0)=0$ is a necessary condition for conjugate operator is linear operator.\par
+    The function $f(z)=\frac{z-i\lambda}{z+i\lambda}=\frac{\abs{z}^2-\lambda^2-2i\lambda\Re{z}}{\abs{z}^2+\lambda^2+2\lambda\Im{z}}$ maps $\Re{z}>0$ to {\color{red}$\Im{z}<0$} since $1\mapsto\frac{1-\lambda^2-2i\lambda}{1+\lambda^2}$.\par
+    If $\abs{z}=\lambda$, $f(z)=\frac{-i\Re{z}}{\lambda+\Im{z}}$ and $\arg{f(z)}=-\frac{\pi}{2}$. Thus $h_\lambda(z)=\frac{1}{2}$. If $k\neq \frac{1}{2}$, the level lines $h_\lambda(z)=k$ when $\tan\arg{f(z)}=\frac{-2\lambda\Re{z}}{\abs{z}^2-\lambda^2}=\tan\pi(k-1)$. Which is $-2\lambda x=c(k)(x^2+y^2-\lambda^2)$. This is a circle passing through $i\lambda$ and $-i\lambda$.\par
+    Let $f(x)=\frac{1}{x}+\arg{\tan{x}}-\frac{\pi}{2}$. $f'(x)=-\frac{1}{x^2}+\frac{1}{1+x^2}<0$ and $\lim_{x\to\infty}f(x)=0$. Thus $f(x)>0$. The inequality $\frac{\pi}{2}-\arg{\tan{\lambda}}\leq\frac{1}{\lambda}$ holds.\par
+    $u$ is harmonic and $F$ is holomorphic, then $u\circ F$ is holomorphic. $u$ is $\Re{G}$ with $G$ holomorphic. $G\circ F$ is holomorphic. Thus $u\circ F=\Re{G\circ F}$ is harmonic.\par
+    We should pay attention to this statement: \emph{Since $\tilde{f}(t)=\lim_{r\to 1}{v(re^{it})}$, then}
+    \begin{align*}
+        \abs{E_\lambda} & =\abs{\bigcup_{n=1}^{\infty}\bigcap_{j=n}^{\infty}\{t:\abs{v(r_je^{it})}>\lambda\}} \\
+                        & =\abs{\lim_{n\to\infty}\bigcap_{j=n}^{\infty}\{t:\abs{v(r_je^{it})}>\lambda\}}      \\
+                        & =\lim_{n\to\infty}\abs{\bigcap_{j=n}^{\infty}\{t:\abs{v(r_je^{it})}>\lambda\}}
+    \end{align*}
+    The last equality is by continuity of measure.\par
+    {\color{blue}I don't know why author choose $C=\frac{64}{\pi}$ finally}.
+\end{remark}
 \subsection{Conjugate function and $H^p$ space}
-\subsection{Conjugate function operator}
-\end{document}
+We now describe $H^p$ for $1\leq q\leq \infty$. Suppose $F\in H^p$, we know $F=P(f)$ for some $f\in L^1$. $f\in L^1$ implies $\tilde{f}$ is well defined.
+We can write $F=f+\tilde{f}+i\Im{F(0)}$ for boundary $F$. $F(z)\in H^p$ implies $f\in\Re{L^p}$ (theorem 3.6 in book). Thus:
+\begin{equation*}
+    H^p\subset\{f+i\tilde{f}+i c:f\in\Re{L^p}, c\in\mathbb{R}\}
+\end{equation*}
+{\color{blue} By writing $\tilde{f}=F-f-\Im{F(0)}$, we know $\tilde{f}\in L^p$ for $1\leq p\leq\infty$ (conclusion in book)}.\par
+When $1<p<\infty$, $f\in L^p$ guarantees $\tilde{f}\in L^p$. $(f+i\tilde{f}+ic)\in L^p$ implies $P(f+i\tilde{f}+ic)\in H^p$. Thus for $1<p<\infty$:
+\begin{equation*}
+    H^p\supset\{f+i\tilde{f}+i c:f\in\Re{L^p}, c\in\mathbb{R}\}
+\end{equation*}
+Here we take $f\in\Re{L^p}$ to make $\tilde{f}$ meaningful. We also have $\Re{H^p}=\Re{L^p}$ in this case.\par
+For $p=1$, $f\in L^p$ no longer guarantees $\tilde{f}\in L^p$. But we know if $f,\tilde{f}\in L^1$, then $F=P(f+i\tilde{f}+ic)\in H^1$. Thus:
+\begin{equation*}
+    H^1\supset\{f+i\tilde{f}+i c:f\in\Re{L^1},\tilde{f}\in{L^1}, c\in\mathbb{R}\}
+\end{equation*}
+Here we take $f\in\Re{L^p}$ to make $\tilde{f}$ meaningful. We also have $ \Re{H^1}=\{f\in\Re{L^1}:\tilde{f}\in{L^1}\}\subsetneqq\Re{L^1}$ by counterexample Poisson kernel.\par
+Similarly we have:
+\begin{equation*}
+    H^\infty\supset\{f+i\tilde{f}+i c:f\in\Re{L^\infty},\tilde{f}\in{L^\infty}, c\in\mathbb{R}\}
+\end{equation*}
+and
+\begin{equation*}
+    \Re{H^\infty}=\{f\in\Re{L^\infty}:\tilde{f}\in{L^\infty}\}\subsetneqq\Re{L^\infty}
+\end{equation*}
+\begin{remark}
+    Author suppose $F(e^{it})\in H^p$, but if $F(re^{it})\in H^p$ we only know $F(e^{it})\in L^p$. {\color{red}In other words, $F(e^{it})\in H^p$ is not clear}.
+\end{remark}
+\subsection{Conjugate operator}
+\begin{remark}
+    {\color{red}\begin{equation*}
+            \frac{r\sin{t}}{1+r^2-2r\cos{t}}\to\frac{1}{2\tan{\frac{t}{2}}}
+        \end{equation*}
+        as $r\to 1$ fails if $t=0$.}
+    \begin{align*}
+        \abs{\frac{r\sin{t}}{1+r^2-2r\cos{t}}} & =\abs{\frac{2r\sin{\frac{t}{2}}\cos{\frac{t}{2}}}{1+r^2-2r(2(\cos{\frac{t}{2}})^2-1)}} \\
+                                               & =\abs{\frac{2r\sin{\frac{t}{2}}\cos{\frac{t}{2}}}{(1+r)^2-4r(\cos{\frac{t}{2}})^2}}    \\
+                                               & =\abs{\frac{2r\sin{\frac{t}{2}}\cos{\frac{t}{2}}}{(1-r)^2+4r(\sin{\frac{t}{2}})^2}}    \\
+                                               & \leq\abs{\frac{2r\sin{\frac{t}{2}}\cos{\frac{t}{2}}}{4r(\sin{\frac{t}{2}})^2}}         \\
+                                               & =\abs{\frac{1}{2\tan{\frac{t}{2}}}}                                                    \\
+                                               & {\color{red}=\frac{1}{2\tan{\abs{\frac{t}{2}}}}}                                       \\
+                                               & {\leq\frac{1}{\abs{t}}}
+    \end{align*}
+
+\end{remark}
+
+The following theorem shows we can define conjugate function without getting inside the disk, by singular integral:
+\begin{theorem}[theorem 5.14 in book]
+    If $f\in L^1$, then
+    \begin{equation*}
+        \tilde{f}(\theta)=\lim_{\epsilon\to 0}\frac{1}{\pi}\int_{0<\epsilon<\abs{t}<\pi}\frac{1}{2\tan{\frac{t}{2}}}f(\theta-t)d t
+    \end{equation*}
+    for every $\theta$ in the Lebesgue set of $f$ and, consequently for a.e. $\theta$.
+\end{theorem}
+\begin{remark}
+    {\color{blue}I don't know why
+        \begin{equation*}
+            \frac{1}{\pi}\int_{1-r<\abs{t}<\pi}(\frac{r\sin{t}}{1+r^2-2r\cos{t}}-\frac{1}{2\tan{\frac{t}{2}}})f(\theta-t)d t
+        \end{equation*}
+        is bounded by
+        \begin{equation*}
+            C(1-r)^2\int_{1-r<\abs{t}<\pi}\frac{\abs{f(\theta-t)-f(\theta)}}{\abs{t}^3}d t
+        \end{equation*}
+        as $r\to 1$}.
+\end{remark}
+For upper half plane, we know $u(x,t)=P_t*f(x)$ is harmonic function. We have Hilbert transform as counterpart of conjugate function:
+\begin{equation*}
+    H f(x)=\lim_{\epsilon\to 0}\int_{\abs{y}>\epsilon}\frac{f(x-y)}{y}d y
+\end{equation*}
+for a.e. $x$.
+% \end{document}
