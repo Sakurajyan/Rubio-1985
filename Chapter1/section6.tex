@@ -1,0 +1,141 @@
+% \documentclass{report}
+% \usepackage{amsthm}
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage{amsfonts}
+% \usepackage{xcolor}
+% \usepackage{mathrsfs}
+% \newtheorem{remark}{Remark}
+% \newtheorem{theorem}{Theorem}
+% \newtheorem{definition}[theorem]{Definition}
+% \newtheorem{proposition}[theorem]{Proposition}
+% \newtheorem{corollary}[theorem]{Corollary}
+% \numberwithin{theorem}{subsection}
+% \numberwithin{remark}{subsection}
+% \newcommand{\norm}[1]{\lVert#1\rVert}
+% \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+% \newcommand{\absl}[1]{\lvert#1\rvert}
+% \renewcommand{\Re}{\operatorname{Re}}
+% \renewcommand{\Im}{\operatorname{Im}}
+% \begin{document}
+\section{$H^p$ as a Linear Space}
+In this section we look at $H^p$ as a topological vector space. By considering distance $d(F,G)=\norm{F-G}_{H^p}$ for $p\geq 1$ and
+$d(F,G)=\norm{F-G}_{H^p}^p$ for $p<1$, $H^p$ is a metric space. By considering mapping $F(z)\mapsto F(e^{it})$, $H^p$ is isometric
+to subspace of $L^p$. The main topic in this section is dual of $H^p$.
+\subsection{$H^p$ is not Locally convex for $0<p<1$}\label{sec: locally convex}
+If a space is locally convex, there is a convex neighborhood $V$ contained in ball $B(0,1)$. Since $V$ is a neighborhood, there is
+a ball $B(0,\epsilon)$ contained in $V$. Thus by contrapositive, If for all $\epsilon>0$, there is a convex combination of $F$ in ball $B(0,\epsilon)$
+is out of $B(0,1)$, then the space is not locally convex.\par
+It is easy to prove for $0<p<1$, $L^p$ is not locally convex by using triangle wave function. To prove the same fact for $H^p$, we use trigonometric
+polynomials to approximate triangle wave function. And conclude these polynomials are in ball $B(0,\epsilon)$ and their convex combination is out of
+ball $B(0,1)$.
+\begin{remark}[notes on proof of theorem 6.2 in book]
+    For $1<p<1$, $(a+b)^p\leq a^p+b^p$ by $(a+b)^p\leq\frac{(2a)^p+(2b)^p}{2}=2^{p-1}a^p+2^{p-1}b^p\leq a^p+b^p$\par
+\end{remark}
+\begin{remark}[Algebric dual space and topological dual space from wikipedia: dual space]
+    Given any vector space $V$ over a field $\mathbb{F}$, the algebraic dual space $V^*$ is defined as the set of all linear functionals $\phi:V\to \mathbb{F}$.\par
+    When dealing with topological vector spaces, one is typically only interested in the continuous linear functionals $\phi:V\to \mathbb{F}$.
+    This gives rise to the notion of the "continuous dual space" or "topological dual" which is a linear subspace of the algebraic dual space.
+    For any finite-dimensional normed vector space or topological vector space, such as Euclidean n-space, the continuous dual and the algebraic dual coincide.
+    This is however false for any infinite-dimensional normed space.
+\end{remark}
+Being non locally convex has a great deal of continuous linear functionals. The topological dual or continuous linear functional on $H^p$ is zero.
+First we prove the only convex neighborhood of 0 is the whole space. By using the proof of non locally convex reversely, Given a convex and open set $V\subset H^p$ and $0\in V$,
+we can show for any $F\in H^p$, there is a combination $\sum_j{\lambda_jF_j}=F$, s.t. $\sum_j{\lambda_j}=1$ and $F_j\in V$. Thus $F\in V$ by $V$ convex and we have $V=H^p$.\par
+Then we consider the continuous linear functionals on $H^p$. Assume $\phi:H^p\to \mathbb{F}$ is a continuous linear functional. Let $\mathscr{B}$ be a locally convex base for $\mathbb{F}$. For any $W\in \mathscr{B}$, we
+have $\phi^{-1}(W)$ is convex and open hence is $H^p$. $\phi(H^p)\subset W$ for all $W\in \mathscr{B}$. We conclude that $\phi(F)=0$ for all $F\in H^p$. Thus all continuous linear functionals on $H^p$ are zero (This part is following the section 1.47 in Rudin, 1991).
+\par
+Using inequality:
+\begin{equation*}
+    \abs{F(z)}\leq\frac{1}{(1-\abs{z})^{\frac{1}{p}}}\norm{F}_{H^p}
+\end{equation*}
+for $F\in H^p$ with $0<p<\infty$, we can prove $H^p$ is a complete space. Thus $H^p$ is closed subspace of $L^p$ in isometry sense.
+\begin{remark}
+    {\color{blue}I don't know why $H^p$ is the minimal closed subspace which contains $\{e^{ijt}:j=0,1,\cdots\}$. The author give the reason as follows:
+        If $F(z)=\sum_0^\infty{a_jz^j}$ is in $H^p$, $F(re^{it})\to F(e^{it})$ in $L^p$ as $r\to 1$. And for $r$ fixed, $\sum_0^n{a_jr^je^{ijt}}\to F(re^{it})$
+        uniformly as $n\to\infty$.}
+\end{remark}
+\subsection{Dual of $H^p$}
+In subsection \ref{sec: locally convex}, we show for $0<p<1$, the dual of $H^p$ is zero. We investigate case $1\leq p\leq \infty$ in this subsection.\par
+In section 5, we show for $1<p<\infty$, $ H^p=\{f+i\tilde{f}+i c:f\in\Re{L^p}, c\in\mathbb{R}\}$ and for $p=1$, $H^1=\{f+i\tilde{f}+i c:f\in\Re{L^1},\tilde{f}\in{L^1}, c\in\mathbb{R}\}$.
+Thus $H^p$ is a proper subspace of $L^p$.\par
+By dual of $L^p$, any continuous linear functional $\phi(g)$ for $g\in L^p$ can be written as $\phi_f(g)=\int{gf}$ with $f\in L^{p'}$. We consider the restriction of $\phi$ to $H^p$. This is
+the continuous linear functional $\phi_f(F)=\frac{1}{2\pi}\int_{-\pi}^{\pi}{F(e^{it})f(t)d t}$ on $H^p$. If we consider this mapping is as from $L^{p'}\to (H^p)^*$, we have:
+\begin{align*}
+    \norm{\phi_f} & =\sup_{\norm{f}_{p'}=1}\frac{\norm{\phi_f}_{(H^p)^*}}{\norm{f}_{p'}}                                                                                                       \\
+                  & =\sup_{\norm{f}_{p'}=1}\sup_{\norm{F}_{H^p}=1}\frac{\abs{\frac{1}{2\pi}\int_{-\pi}^{\pi}{F(e^{it})f(t)d t}}}{\norm{F}_{H^p}}                                               \\
+                  & \leq\sup_{\norm{f}_{p'}=1}\sup_{\norm{F}_{H^p}=1}\frac{\frac{1}{2\pi}(\int_{-\pi}^{\pi}{\abs{F(e^{it})}^p d t})^p(\int_{-\pi}^{\pi}\abs{f(t)}^p d t)^{p'}}{\norm{F}_{H^p}} \\
+                  & =\sup_{\norm{f}_{p'}=1}\sup_{\norm{F}_{H^p}=1}\frac{\norm{F}_{H^p}\norm{f}_{p'}}{\norm{F}_{H^p}}                                                                           \\
+                  & =1
+\end{align*}
+Thus the mapping $\phi$ from $L^{p'}\to (H^p)^*$, $f\mapsto\phi_f$ is a continuous linear mapping. The Hahn-Banach theorem tells us that every $\Lambda\in (H^p)^*$ is of the form $\Lambda=\phi_f$
+for some $f$ with $\norm{f}_{p'}\leq\norm{\Lambda}$. More precisely, any continuous linear functional $\Lambda\in (H^p)^*$ can be extended to all of $L^p$. Thus we get $f\in L^{p'}$ with
+$\phi_f(F)=\frac{1}{2\pi}\int_{-\pi}^{\pi}{F(e^{it})f(t)d t}$ restricted back to $H^p$.\par
+The kernel of mapping $\phi$ is $f\in  L^{p'}$ for which $\phi_f=0$. This is equivalent $\phi_f(F)=\frac{1}{2\pi}\int_{-\pi}^{\pi}{F(e^{it})f(t)d t}=0$ for all $F\in H^p$, clearly,
+\begin{equation*}
+    \ker{\phi}=\{f\in L^{p'}: \hat{f}(-j)=\int_{-\pi}^{\pi}{e^{i j t}f(t)\frac{dt}{2\pi}}=0, j=0,1,\cdots\}
+\end{equation*}
+$\hat{f}(j)$ is zero for non-positive frequency $j$ is equivalent to $f\in H^p$ and $\hat{f}(0)=0$. Thus
+\begin{align*}
+      & \{f\in L^{p'}: \hat{f}(-j)=\int_{-\pi}^{\pi}{e^{i j t}f(t)\frac{dt}{2\pi}}=0, j=0,1,\cdots\} \\
+    = & \{f\in H^{p'}: \int_{-\pi}^{\pi}{f(t)d t}=0\}
+\end{align*}
+We denote this space by $H^{p'}(0)$ and obtain an isometry 
+\begin{equation}\label{dual of Hp}
+    L^{p'}/ H^{p'}(0)\cong (H^p)^*
+\end{equation}
+Now we consider the continuous linear functionals on $H^{p}(0)$, We consider the kernel of mapping $L^{p'}\to (H^{p}(0))^*$:
+\begin{equation*}
+    \{f\in L^{p'}: \hat{f}(-j)=\int_{-\pi}^{\pi}{e^{i j t}f(t)\frac{dt}{2\pi}}=0, j=1,2,\cdots\}=H^{p'}
+\end{equation*}
+Thus we obtain an isometry 
+\begin{equation}\label{dual of Hp(0)}
+    (H^{p'}(0))^*\cong L^{p'}/ H^{p'}
+\end{equation}
+\begin{remark}[Topological complement]
+Two vector subspace $X$ and $Y$ are algebraic complement of each other if $X+Y=E$ and $X\cap Y=\{0\}$. We can write $X\oplus Y=E$.\par
+Two vector subspace $X$ and $Y$ are topological complement of each other if they are algebraic complement of each other and $P_X$ (Projection from $E$ to $X$) is continuous. If E is 
+Banach space, another equivalent condition for topological complement is they are algebraic complement of each other and  $X$ and $Y$ are closed.\par
+$X$ and $Y$ are topological complement of each other means $E=X\oplus Y$ and $E\cong X\oplus Y$ in isometry sense.
+\end{remark}
+For $1<p<\infty$, $H^{p'}(0)$ has a topological complement in $L^{p'}$. Let us see how to construct this. Consider $f\in L^{p'}$, $f=\sum_{-\infty}^{\infty}{a_je^{ijt}}$. Set
+\begin{equation*}
+    A(f)=\frac{1}{2}(f+\tilde{f}-\hat{f}(0))=\sum_{j>0}{a_je^{i j t}}
+\end{equation*}
+Then $A$ is the projection of $L^{p'}$ onto $H^{p'}(0)$. $f-A(f)=\sum_{j\leq 0}{a_je^{i j t}}=\sum_{j\geq 0}{a_{-j}e^{-i j t}}$. If we write $F(z)=\sum_{j\geq 0}{a_{-j}z^j}$, we have $F\in H^{p'}$
+and $f(t)=Af(t)+F(e^{-it})$. If we write $G(z)=\sum_{j\geq 0}{\overline{a_{-j}}z^j}$. $G(e^{it})=F(e^{-it})\in H^{p'}$. Thus we have:
+\begin{equation*}
+    f(t)=A f(t)+\overline{G(e^{it})}
+\end{equation*}
+Using notation $\overline{H^{p'}}={\overline{h(t)}:h\in H^{p'}}$ and $(H^{p'})^-={h(-t):h\in H^{p'}}$. We have:
+\begin{equation*}
+    L^{p'}=H^{p'}(0)\oplus\overline{H^{p'}}=H^{p'}(0)\oplus (H^{p'})^-
+\end{equation*}
+If we consider $B(f)=\frac{1}{2}(f+\tilde{f}+\hat{f}(0))=\sum_{j\geq 0}{a_je^{i j t}}$. We have:
+\begin{equation*}
+    L^{p'}=H^{p'}\oplus\overline{H^{p'}(0)}=H^{p'}\oplus (H^{p'}(0))^-
+\end{equation*}
+By topological direct sum we have topological isomorphisms:
+\begin{equation*}
+    L^{p'}/ H^{p'}(0)\cong H^{p'}
+\end{equation*}
+\begin{equation*}
+    L^{p'}/H^{p'}\cong H^{p'}(0)
+\end{equation*}
+By equation \eqref{dual of Hp} and \eqref{dual of Hp(0)}, we derive a conclusion for $H^p$ similar with dual of $L^p$.
+\begin{equation*}
+    (H^{p})^*\cong H^{p'}
+\end{equation*}
+with the pairing
+\begin{equation*}
+    <G,F>=\frac{1}{2\pi}\int_{-\pi}^{\pi}F(e^{it})G(e^{-it})d t
+\end{equation*}
+where $F\in H^p$, $G\in H^{p'}$, or
+
+\begin{equation*}
+    <G,F>=\frac{1}{2\pi}\int_{-\pi}^{\pi}F(e^{it})\overline G(e^{it})d t
+\end{equation*}
+where $F\in H^p$, $G\in H^{p'}$. Besides, we also have $(H^{p}(0))^*\cong H^{p'}(0)$.
+We can not use same argument for $p=1$ case since for $f\in L^{1'}=L^\infty$, $\hat{f}$ no longer in $L^\infty$. We will study 
+$(H^1)^*$ in section 9. Now we only have $(H^1)^*\cong L^{\infty}/ H^{\infty}(0)$ by equation \eqref{dual of Hp}.
+% \end{document}

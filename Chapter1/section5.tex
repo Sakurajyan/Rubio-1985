@@ -85,9 +85,9 @@ Our final result is estimation of imaginary part of holomorphic function:
     \end{equation*}
 \end{corollary}
 \subsection{Estimate conjugate function $\tilde{f}$ for $f\in L^1$}
-The corollary \ref{thm: Marcel Riesz inequality} does not hold for $p=1$. For example, Poisson kernel $P_r(t)$ is in $L^1$, $\norm{P_r(t)}_1=2\pi$ but conjugate
+The conjugate or harmonic function is always exists, but the behavior of boundary is not simple. The corollary \ref{thm: Marcel Riesz inequality} does not hold for $p=1$. For example, Poisson kernel $P_r(t)$ is in $L^1$, $\norm{P_r(t)}_1=2\pi$ but conjugate
 Poisson kernel $Q_r(t)$ is not, $\int{\abs{Q_r(t)}}=4\log{\frac{1+r}{1-r}}$.
-\begin{remark}
+\begin{remark}\label{conjugate operator not bounded in L^infty}
     By Hahn-Banach theorem and duality of $L^p$, for $v\in L^1$, $\int{\abs{v}}=\sup_{\norm{g}_\infty\leq 1}{\abs{\int{vg}}}$.
         {\color{blue}I don't know how the author concludes conjugate function operator is not bounded in $L^\infty$}.
 \end{remark}
@@ -133,7 +133,8 @@ and
     \Re{H^\infty}=\{f\in\Re{L^\infty}:\tilde{f}\in{L^\infty}\}\subsetneqq\Re{L^\infty}
 \end{equation*}
 \begin{remark}
-    Author suppose $F(e^{it})\in H^p$, but if $F(re^{it})\in H^p$ we only know $F(e^{it})\in L^p$. {\color{red}In other words, $F(e^{it})\in H^p$ is not clear}.
+    Author suppose $F(e^{it})\in H^p$, but if $F(re^{it})\in H^p$ we only know $F(e^{it})\in L^p$. {\color{red}In other words, $F(e^{it})\in H^p$ is not clear}.\par
+    Conclusion for $H^\infty$ is from remark \ref{conjugate operator not bounded in L^infty}.
 \end{remark}
 \subsection{Conjugate operator}
 \begin{remark}
