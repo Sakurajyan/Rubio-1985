@@ -1,0 +1,130 @@
+% \documentclass{report}
+% \usepackage{amsthm}
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage{amsfonts}
+% \usepackage{xcolor}
+% \usepackage{mathrsfs}
+% \newtheorem{remark}{Remark}
+% \newtheorem{theorem}{Theorem}
+% \newtheorem{definition}[theorem]{Definition}
+% \newtheorem{proposition}[theorem]{Proposition}
+% \newtheorem{corollary}[theorem]{Corollary}
+% \numberwithin{theorem}{subsection}
+% \numberwithin{remark}{subsection}
+% \newcommand{\norm}[1]{\lVert#1\rVert}
+% \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+% \newcommand{\absl}[1]{\lvert#1\rvert}
+% \renewcommand{\Re}{\operatorname{Re}}
+% \renewcommand{\Im}{\operatorname{Im}}
+% \begin{document}
+\section{Canonical Factorization Theorem}
+In section 3, we show a holomorphic function $F\in H^p$, $0<p\leq\infty$ can be written as $F=BH$, where $B$ is the Blaschke
+product, $H$ is never zero and $\norm{H}_{H^p}=\norm{F}_{H^p}$. We will get a finer factorization: canonical factorization. We
+can factorize $F$ as product of inner and outer function:
+\begin{equation*}
+    F(z)=I_F(z)E_F(z)
+\end{equation*}
+where:
+\begin{equation*}
+    I_F(z)=e^{i c}B(z)\exp{(-\frac{1}{2\pi}\int_{-\pi}^{\pi}{\frac{e^{it}+z}{e^{it}-z}d\sigma(t)})}
+\end{equation*}
+and
+\begin{equation*}
+    E_F(z)=\exp{(\frac{1}{2\pi}\int_{-\pi}^{\pi}{\frac{e^{it}+z}{e^{it}-z}\log{\abs{F(e^{it})}}d t})}
+\end{equation*}
+\subsection{Canonical factorization}
+For $F\in H^p$, $0<p\leq\infty$, we use Riesz factorization $F=BH$. We want to keep factorizing non zero function $H$. Write $\log{\abs{H(r_je^{it})}}=\log^+{\abs{H(r_je^{it})}}-\log^-{\abs{H(r_je^{it})}}$. We know $\log^-{\abs{H(r_je^{it})}}$ converges to a positive measure $\mu_2$. And we observe $\log^+{\abs{H(r_je^{it})}}\to \log^+{\abs{H(e^{it})}}$ in $H^1$ norm. \par
+Since $\log{H(r_jz)}=\log{\abs{H(r_jz)}}+i\theta$,
+$\abs{\log{H(r_jz)}}\leq \abs{\log{\abs{H(r_jz)}}}+\abs{\theta}$. By theorem 3.2 in book, we show that $\frac{1}{2\pi}\int_{-\pi}^{\pi}{\abs{\log{\abs{H(re^{it})}}}d t}$ is
+finite. Thus $\log{H(r_jz)}\in H^1$.\par
+Now we factorize the non zero function $H$. by corollary 3.9 in book:
+\begin{equation*}
+    \log{H(r_jz)}=i\arg{H(0)}+\frac{1}{2\pi}\int_{-\pi}^{\pi}{\frac{e^{it}+z}{e^{it}-z}\log{\abs{H(r_je^{it})}}d t}
+\end{equation*}
+Using $\log=\log^+-\log^-$, and let $r_j\to 1$, We have:
+\begin{equation*}
+    \log{H(z)}=i c+\frac{1}{2\pi}\int_{-\pi}^{\pi}{\frac{e^{it}+z}{e^{it}-z}\log^+{\abs{H(e^{it})}}d t}-\frac{1}{2\pi}\int_{-\pi}^{\pi}{\frac{e^{it}+z}{e^{it}-z}d\mu_2(t)}
+\end{equation*}
+Write $d\mu_2(t)=g(t)d t+d\sigma(t)$, $k(t)=\log^+{\abs{H(e^{it})}}-g(t)$. We finally get canonical theorem:
+\begin{equation*}
+    F(z)=I_F(z)E_F(z)
+\end{equation*}
+where:
+\begin{equation*}
+    I_F(z)=e^{i c}B(z)\exp{(-\frac{1}{2\pi}\int_{-\pi}^{\pi}{\frac{e^{it}+z}{e^{it}-z}d\sigma(t)})}
+\end{equation*}
+and
+\begin{equation*}
+    E_F(z)=\exp{(\frac{1}{2\pi}\int_{-\pi}^{\pi}{\frac{e^{it}+z}{e^{it}-z}\log{\abs{F(e^{it})}}d t})}
+\end{equation*}
+\begin{remark}\label{rmk: property of factorization}
+    If $p<\infty$, we have $\abs{E_F(z)}^p\leq P(\abs{F(e^{it})}^p)$, or $\abs{E_F(re^{i\theta})}^p\leq \frac{1}{2\pi}\int_{-\pi}^{\pi}P_r(\theta-t)\abs{F(e^{it})}^p dt$.
+    Integrate both side by $\theta$ we have
+    \begin{align*}
+        \frac{1}{2\pi}\int_{-\pi}^{\pi}\abs{E_F(re^{i\theta})}^p d\theta & \leq \frac{1}{2\pi}\int_{-\pi}^{\pi}\frac{1}{2\pi}\int_{-\pi}^{\pi}P_r(\theta-t)\abs{F(e^{it})}^p d t d\theta \\
+                                                                         & \leq\frac{1}{2\pi}\int_{-\pi}^{\pi}\abs{F(e^{it})}^p d t
+    \end{align*}
+    Thus $F\in H^p$ implies $E_F\in H^p$. The $p=\infty$ case is trivial. \par
+    $\abs{E_F(e^{it})}=\abs{F(E^{it})}$ a.e.t since $I_F(e^it)$ has finite non zero point.
+\end{remark}
+We say $F\in H^p$ is an inner function if and only if $E_F=1$, and say $F\in H^p$ is an outer function if and only if $I_F$ is constant.
+\subsection{Outer function}
+We list some conclusions about outer functions. Most of them are criterions of outer function.
+\begin{corollary}
+    If $F\in H^p$, $0<p\leq\infty$, and is not identically zero, then:
+    \begin{equation*}
+        \log\abs{F(0)}\leq \frac{1}{2\pi}\int_{-\pi}^{\pi}{\frac{e^{it}+z}{e^{it}-z}\log{\abs{F(e^{it})}}d t}
+    \end{equation*}
+    and equality holds if and only if $F$ is an outer functions.
+\end{corollary}
+The following theorem is an easy consequence of the above corollary.
+\begin{theorem}[criterion of outer function. theorem 7.5 in book]
+    Suppose that $F\in H^p$ and $F^{-1}\in H^p$ for some $0<p\leq\infty$. Then $F$ is an outer function.
+\end{theorem}
+The next theorem states that the limit of sequence of decreasing outer functions is outer function.
+\begin{theorem}
+    Let $F_j\in H^p$ be outer functions for $j=1,2,\cdots$. Suppose that $\abs{F_1(z)}\geq\abs{F_2(z)}\geq\cdots$ for every
+    $z\in D$ and $F_j(z)\to F(z)$ uniformly over compact subsets of $D$, as $j\to\infty$. Then, if $F$ is not identically zero, $F$ is an outer function.
+\end{theorem}
+\begin{remark}[notes on proof of theorem 7.6 in book]
+    \begin{equation*}
+        \frac{1}{2\pi}\int_{-\pi}^{\pi}{\log^-{\abs{F_j(e^{it})}}d t}\to \frac{1}{2\pi}\int_{-\pi}^{\pi}{\log^-{\abs{F(e^{it})}}d t}
+    \end{equation*}
+    by monotone convergence. {\color{blue}But monotone convergence does not ensure limit is finite. I wonder if it can be infinite}.
+\end{remark}
+The following theorem is an easy consequence of the above theorem.
+\begin{theorem}[theorem 7.7 in book]
+    Let $F\in H^p$, $0<p\leq\infty$, not identically zero, and such that $\Re{F(z)}\geq 0$ for every $z\in D$. Then $F$ is an outer function.
+\end{theorem}
+\begin{remark}[notes on proof of theorem 7.8 in book]\ \\
+    Proof of $\abs{K(z)}^p=\exp{P(\log(\abs{K(e^{it})}^p))}\leq P(\abs{K(e^{it})}^p)$ implies $K\in H^p$ and $p=\infty$ case is similar with remark \ref{rmk: property of factorization}.
+\end{remark}
+\subsection{Inner function}
+We can prove the following corollary, although sometimes it is considered as definition of inner functions.
+\begin{corollary}[corollary 7.2 in book]
+    The inner functions are precisely those functions $F\in H^\infty$ for which $\abs{F(e^{it})}=1$ almost everywhere.
+\end{corollary}
+\begin{remark}[notes on proof of corollary 7.2 in book]
+    Since $\abs{E_F(z)}=\exp{P(\log\abs{F(e^{it})})}$. One direction is
+    \begin{equation*}
+        E_F=1\implies\abs{E_F}=1\implies\log{\abs{F(e^{it})}}=0\implies\abs{F(e^{it})}=1
+    \end{equation*}
+    Another direction is
+    \begin{equation*}
+        \abs{F(e^{it})}=1  \implies\log{\abs{F(e^{it})}}=0\implies E_F=1
+    \end{equation*}
+\end{remark}
+Consider space $F\cdot\mathscr{P}$, where $\mathscr{P}$ is the space of polynomials. Theorem 7.9 in book shows if $F$ is an outer function, then $F\cdot\mathscr{P}$ is dense
+in $H^p$. Corollary 7.11 in book shows if $F$ is just in $H^p$, then closure of $F\cdot\mathscr{P}$ is $I_F\cdot H^p$. These conclusions show how the inner factor plays in some approximation problems.
+\begin{remark}[notes on theorem 7.9 in book]
+    Even if $\mathscr{P}$ is dense in $H^p$, $F\cdot\mathscr{P}$ may not be dense in $H^p$. For example if $F(0)=0$ in a positive measure set.\par
+    By Hahn-Banach theorem, if $E$ is locally convex and $F$ is subspace of $E$, then $F$ is dense in $E$ if and only if for
+    any $f\in E^*$, $f\vert_F=0 \implies f=0$. Thus for $p\geq 1$, $E_F\cdot\mathscr{P}$ is dense in $H^p$ is equivalent to
+    for any $k(e^{it})\in L^{p'}$, $\int_{-\pi}^{\pi}E_F(e^{it})e^{ijt}k(e^{it})dt=0\implies\int_{-\pi}^{\pi}G(e^{it})k(e^{it})dt=0$ for each $G\in H^p$.
+    But $\int_{-\pi}^{\pi}E_F(e^{it})e^{ijt}k(e^{it})dt=0$ also implies the non positive frequencies of $E_F(e^{it})k(e^{it})$ is 0. This means $E_F(e^{it})k(e^{it})=\sum_{j=1}^\infty{a_ne^{ijt}}$.
+    Thus $E_F(e^{it})k(e^{it})=e^{it}H(e^{it})$. By Holder inequality, we see $H\in H^1$.\par 
+    {\color{blue}I wonder in which sense $E_F\cdot\mathscr{P}$ is not dense in $H^p$ and how the proof excludes this case}.\par
+    By Holder inequality, $\int\abs{R-E_K\cdot Q}^p\leq(\int\abs{R-E_K\cdot Q}^{2p})^\frac{1}{2}(\int 1)^\frac{1}{2}$. Thus $\norm{R-E_K\cdot Q}_{H^{2p}}<\epsilon$ implies $\norm{R-E_K\cdot Q}_{H^{p}}<\epsilon$  
+\end{remark}
+% \end{document}
