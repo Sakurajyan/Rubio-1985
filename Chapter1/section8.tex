@@ -1,0 +1,125 @@
+\documentclass{report}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{xcolor}
+\usepackage{mathrsfs}
+\newtheorem{remark}{Remark}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\numberwithin{theorem}{subsection}
+\numberwithin{remark}{subsection}
+\newcommand{\norm}[1]{\lVert#1\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\absl}[1]{\lvert#1\rvert}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\begin{document}
+\section{The Helson-Szego Theorem}
+In this section, we no longer focus on Lebesgue measure. We will reexamine some results for boundedness of conjugate function on Borel measure.
+The main result we give is the Helson-Szego theorem. The Helson-Szego theorem is a characterization of those positive (Borel) measure $\mu$ on $[-\pi,\pi]$ for which the conjugate function
+operator is bounded in $L^2(\mu)$. More precisely, we answer the problem for what positive measure the following inequality holds:
+\begin{equation*}
+    \int_{-\pi}^{\pi}\absl{\tilde{f}(t)}^2 d\mu(t)\leq C\int_{-\pi}^{\pi}\abs{f(t)}^2 d\mu(t)
+\end{equation*}
+where $f(t)=\sum_{j=-n}^{n}{a_je^{ijt}}$ and $\tilde{f}(t)=-i\sum_{j=-n}^{n}{(\sgn j)a_je^{ijt}}$. $f(t)+i\tilde{f}(t)$ only left non negative frequency part.
+We will call such measures Helson-Szego measures.
+\subsection{Distance from constant function 1 to space $\mathscr{P}(0)$}
+\begin{remark}[notes on proof of theorem 8.2 in book]
+    To proof $1\in\overline{\mathscr{P}(0)}$, we can use Hahn-Banach theorem: if $E$ is locally convex and $F$ is subspace of $E$ and $x_0\in E$, then $x_0\in \bar{F}$ if and only if for
+    any $f\in E^*$, $f\vert_F=0 \implies f(x_0)=0$\par
+    $\mu$ and $\nu$ are mutually singular if there are disjoint subsets $A$ and $B$ in $\mathscr{M}$ s.t. $\nu(E)=\nu(A\cap E)$ and
+    $\mu(E)=\mu(B\cap E)$ for all $E\in\mathscr{M}$. $\nu$ is absolutely continuous w.r.t. $\mu$ if $\nu(E)=0$ whenever $E\in\mathscr{M}$ and $\mu(E)=0$ (section 4.2 in Chapter 6 of Stein’s Real Analysis).\par
+    Thus if $\mu$ and $\nu$ are mutually singular and $\nu$ is absolutely continuous w.r.t. $\mu$, then for all $E\in\mathscr{M}$, $\mu(A\cap E)=\mu(A\cap B\cap E)=0$ and hence $\nu(E)=\nu(A\cap E)=0$. Therefore $\nu$ is identically zero.
+\end{remark}
+The following lemma is useful in specifying Helson-Szego measure. It states there is a holomorphic function continuous on boundary can separate closed Lebesgue measure 0 set $E$ and set $\bar{D}\setminus E$. Using this lemma, we can narrow our candidates non negative measure to absolutely continuous measure. All Helson-Szego measure $d\mu$ can be written as $d\mu=w(t)dt$.\par
+\begin{lemma}[lemma 8.3 in book]\label{separate zero measure}
+    Let $E$ be a closed subset of $T$ having Lebesgue measure 0. Then, there exists a function $F\in\mathscr{A}$ (that is: $F$ is holomorphic in $D$ and
+    continuous on $\bar{D}$) such that $F(z)=1$ for every $z\in E$ and $\abs{F(z)}<1$ for every $z\in\bar{D}\setminus E$.
+\end{lemma}
+\begin{remark}[notes on proof of theorem 8.4 in book]
+    {\color{blue}In theorem 8.4 in book we assumes $w\geq 0$ but in proof this condition is never used}.
+    Suppose $\mu$ is a Borel measure and is finite on all finite radius balls. Then for any Borel set $E$ and any $\epsilon>0$, there are an open
+    set $O$ and a closed set $F$ such that $E\subset O$ and $\mu(O-E)\leq\epsilon$ while $F\subset E$ and $\mu(E-F)\leq\epsilon$ (proposition 1.3 in Chapter 6 of Stein’s Real Analysis).\par
+    By above statement, inequality (8.6) in book can be hold.\par
+\end{remark}
+The following theorem gives a precise formula for the distance we are looking for:
+\begin{theorem}[theorem 8.7 in book]\label{distance from P(0) to 1}
+    For $w\geq 0$, $w\in L^1$:
+    \begin{equation*}
+        \inf_{P\in\mathscr{P}(0)}\frac{1}{2\pi}\int_{-\pi}^{\pi}\abs{1-P(e^{it})}^p w(t)d t=\exp(\frac{1}{2\pi}\int_{-\pi}^{\pi}\log w(t)d t),1\leq p<\infty
+    \end{equation*}
+\end{theorem}
+\subsection{The Helson-Szego theorem}
+
+By theorem \ref{distance from P(0) to 1}, if $\log w(t)=-\infty$,  there is a sequence of $(P_j)\subset\mathscr{P}(0)$, s.t. $\int_{-\pi}^{\pi}\abs{1-P_j(e^{it})}^2 w(t)d t\to 0$. Since the conjugate function of $1-P_j(e^{it})$ is $iP_j(e^{it})$ and $\mu$ is
+Helson-Szego measure, we have $\int_{-\pi}^{\pi}\abs{P_j(e^{it})}^2 w(t)d t\to 0$. By $1\leq\abs{P_j(e^{it})}^2+\abs{1-P_j(e^{it})}^2$, we show $\int_{-\pi}^{\pi}1 w(t)d t= 0$. We conclude $\log w(t)=-\infty$ implies $\mu$ is a trivial measure. Thus we can only
+focus on Helson-Szego measure $\mu$ which $d\mu=w(t)dt$, $w(t)\in L^1$ and $\log w(t)\in L^1$.\par
+Given $f(t)=\sum_j{a_je^{ijt}}$, operator $A$ sends $f(t)$ to $Af(t)=\sum_{j>0}{a_je^{ijt}}$   . By easy calculation we have following identities:
+\begin{equation*}
+    \tilde{f}=-i(A f-\overline{A\bar{f}})~and~A f=\frac{-\tilde{\tilde{f}}+i\tilde{f}}{2}
+\end{equation*}
+\begin{remark}[proof of lemma 8.10]
+
+    This proof is from P165 in  Paul Koosis' \emph{Introduction to Hp spaces}.\par
+    By $\tilde{f}=-i(Af-\overline{A\bar{f}})$, if $\norm{Af}_w\leq C\norm{f}_w$, then
+    \begin{equation*}
+        \norm{\tilde{f}}_w\leq \norm{Af}_w+\norm{\overline{A\bar{f}}}_w=\norm{Af}_w+\norm{{A\bar{f}}}_w\leq C\norm{f}_w+C\norm{{\bar{f}}}_w\leq 2C\norm{f}_w
+    \end{equation*}
+    By $Af=\frac{-\tilde{\tilde{f}}+i\tilde{f}}{2}$, if $\norm{\tilde{f}}_w\leq C\norm{f}_w$, then
+    \begin{equation*}
+        \norm{Af}_w\leq \frac{1}{2}\norm{\tilde{\tilde{f}}}_w+\frac{1}{2}\norm{\tilde{f}}_w\leq \frac{C}{2}\norm{{\tilde{f}}}_w+\frac{C}{2}\norm{{f}}_w\leq \frac{C^2}{2}\norm{f}_w+\frac{C}{2}\norm{f}_w\leq \frac{C^2+C}{2}\norm{{f}}_w
+    \end{equation*}
+    Thus conjugate operator bounded in $L^2$ is equivalent to operator $A$ bounded in $L^2$.
+\end{remark}
+We now talk about how Helson-Szego theorem reached. Every lemmas or theorems contain different ideas in the path to Helson-Szego theorem.
+Lemma 8.10 in book shows we can study boundedness of operator $A$ instead of boundedness of conjugate operator. In theorem 8.11 in book, if we write $f(t)=P(e^{it})+e^{it}\overline{Q(e^{it})}$ for some
+$P,Q\in\mathscr{P}(0)$, we can study the boundedness in space $\mathscr{P}(0)$ but we need an additional restriction on some constants.
+Later we state theorem 8.12 in book, we further shows the restriction on the constant in theorem 8.11 in book becomes the restriction on the norm in quotient space $(H^1(0))^*=L^\infty/ H^\infty$.
+The norm on quotient space is naturally the distance from represent element to space $H^\infty$.\par
+Now we state the Helson-Szego theorem:
+\begin{theorem}[Helson-Szego Theorem, theorem 8.14 in book]
+    $w$ is a Helson-Szego weight if and only if $w(t)=e^{u(t)+\tilde{v}(t)}$ with $u$ and $v$ real, bounded and $\norm{v}_\infty<\frac{\pi}{2}$
+\end{theorem}
+\begin{remark}[notes on proof of Helson-Szego theorem]
+    I also refer another proof of Helson-Szego theorem in P167 in Paul Koosis' \emph{Introduction to Hp spaces}.\par
+    Since $u$ is bounded, we have $0<C_1<e^u<C_2<\infty$. If $w(t)=e^{\tilde{v}(t)}$ is a Helson-Szego measure, then:
+    \begin{equation*}
+        \int_{-\pi}^{\pi}\absl{\tilde{f}(t)}^2e^{u+\tilde{v}}d t\leq \int_{-\pi}^{\pi}\absl{\tilde{f}(t)}^2C_2e^{\tilde{v}}d t\leq C\int_{-\pi}^{\pi}\absl{{f}(t)}^2C_2e^{\tilde{v}}d t\leq C\int_{-\pi}^{\pi}\absl{{f}(t)}^2\frac{C_2}{C_1}e^{u+\tilde{v}}d t
+    \end{equation*}
+    Thus we just need to consider the case $w(t)=e^{\tilde{v}(t)}$.\par
+    Recall conjugate function is real. Suppose $\Phi(z)=\exp{(\frac{1}{2\pi}\int_{-\pi}^{\pi}\frac{e^{it}+z}{e^{it}-z}\frac{1}{2}\tilde{v}(t)dt)}$.
+    We have  $\abs{\Phi(z)}^2=\exp{(P(\tilde{v}))}$ and $\Phi(z)^2=\exp{(\frac{1}{2\pi}\int_{-\pi}^{\pi}\frac{e^{it}+z}{e^{it}-z}\tilde{v}(t)dt)}$. Now we compute the angle $\frac{\Phi^2}{\abs{\Phi}^2}$:
+    \begin{align*}
+        \frac{\Phi(z)^2}{\abs{\Phi(z)}^2} & =\exp{(\frac{1}{2\pi}\int_{-\pi}^{\pi}(\frac{e^{it}+z}{e^{it}-z}-P_r(\theta-t))\tilde{v}(t)d t)} \\
+                                          & =\exp{(\frac{1}{2\pi}\int_{-\pi}^{\pi}iQ_r(\theta-t)\tilde{v}(t)d t)}                            \\
+                                          & =\exp{(i\tilde{\tilde{v}}(re^{i\theta}))}                                                        \\
+    \end{align*}
+    If $v(t)=\sum_{j}{a_je^{ijt}}$, then $\tilde{v}(t)=-i\sum_{j}{(\sgn j)a_je^{ijt}}$ and $\tilde{\tilde{v}}(t)=-\sum_{j\neq 0}{a_je^{ijt}}=-v(t)+a_0=-v(t)+v(0)$. Thus $\frac{\Phi^2}{\abs{\Phi}^2}=\exp{(-iP(v)+iv(0))}$.\par
+    Now we have
+    \begin{align*}
+        \Phi(z)^2 & =\abs{\Phi(z)}^2\frac{\Phi(z)^2}{\abs{\Phi(z)}^2} \\
+                  & =\exp{(P(\tilde{v}))}\exp{(-iP(v)+iv(0))}         \\
+                  & =\exp{(P(\tilde{v}-iv))}\exp{iv(0))}
+    \end{align*}
+    Thus we can see the real number $\tau$ in book is $v(0)$. $\tau$ is irrelevant since $\inf_{g\in H^\infty}{\norm{e^{-i\tau}e^{iv(t)}-g}_\infty}=\inf_{g\in H^\infty}{\norm{e^{iv(t)}-g}_\infty}$. Notice that constants are in $H^\infty$.
+    Thus $\abs{e^{iv(t)}-sin\epsilon}<1$ implies $d(e^{iv},H^\infty)<1$.\par
+    The inequality $\abs{e^{i\phi(t)}-H(e^{it})}\leq\alpha$ in book should be $\abs{e^{i\phi(t)}-H(e^{it})}\leq\alpha_1$ for some $\alpha_1$ with $\inf_{g\in H^\infty}{\norm{e^{iv(t)}-g}_\infty}=\alpha<\alpha_1<1$.\par
+    An outer function $F$ has representation:
+    \begin{equation*}
+        F(z)=C\exp{(\frac{1}{2\pi}\int_{-\pi}^{\pi}{\frac{e^{it}+z}{e^{it}-z}w(t)d t})}
+    \end{equation*}
+    where $C=I_F(z)$ is constant. Decompose $\frac{e^{it}+z}{e^{it}-z}=P_r(\theta-t)+iQ_r(\theta-t)$, we have:
+    \begin{equation*}
+        F(z)=C\exp{(\frac{1}{2\pi}\int_{-\pi}^{\pi}{(P_r(\theta-t)+iQ_r(\theta-t))w(t)d t})}=C\exp{(u(re^{i\theta})+iv(re^{i\theta}))}
+    \end{equation*}
+    where $u$ is a real harmonic function and $v$ its conjugate. Let $r\to 1$ and notice $\abs{C}\to 1$. Thus we have $F(e^{it})=e^{i\tau}e^{u+iv}$.\par
+    We conclude that an outer function has representation $e^{i\tau}e^{u+iv}$ where $\tau$ is a real number. $u$ is a real harmonic function and $v$ its conjugate.
+\end{remark}
+\end{document}
+

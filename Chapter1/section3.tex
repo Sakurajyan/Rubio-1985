@@ -119,11 +119,13 @@ we can only say $u$ is $P(\mu)$ for some Borel measure and the result can not be
 in other words $\sup_{0\leq r<1}{\int_{-\pi}^{\pi}\abs{F(re^{i t})} d t}<\infty$ and F is holomorphic,
 then by $F(re^{it})\to F(e^{it})$ in $L^1$. Thus $F$ can be written as the Poisson integral and the Cauchy integral of its boundary function $F(e^{it})$.\par
 \begin{remark}[notes on proof corollary 3.9 in book]
-    {\color{blue} I don't know why
-        \begin{equation*}
-            G(z)=\frac{1}{2\pi}\int_{-\pi}^\pi{\frac{e^{it}+z}{e^{it}-z}\Re{F(e^{it})}d t}
-        \end{equation*}
-        is holomorphic function}.
+    Corollary 3.9 is Schwarz integral formula. The kernel $\frac{1}{2\pi}\frac{e^{it}+z}{e^{it}-z}$ is called Schwarz kernel.\par
+    {\color{blue} We can rewrite:
+        \begin{align*}
+            G(z) & =\frac{1}{2\pi}\int_{-\pi}^\pi{\frac{e^{it}+z}{e^{it}-z}\Re{F(e^{it})}d t}                                                                                        \\
+                 & =\frac{1}{2\pi i}\int_{-\pi}^\pi{\frac{\Re{F(e^{it})}}{e^{it}-z}d e^{it}}+z\frac{1}{2\pi i}\int_{-\pi}^\pi{\frac{\frac{\Re{F(e^{it})}}{e^{it}}}{e^{it}-z}de^{it}}
+        \end{align*}
+        Since $\Re{F(e^{it})}$ and $\frac{\Re{F(e^{it})}}{e^{it}}$ are continuous function on boundary of disk. Then $G(z)$ is holomorphic function}.
 \end{remark}
 An consequence of Poisson representation for $H^1$ functions is a famous theorem due to F. and M. Riesz. It says given a Borel measure $\mu$,
 when negative frequencies of Fourier coefficients of $\mu$ is zero, then $\mu$ is absolutely continuous w.r.t. Lebesgue measure, i.e.:
