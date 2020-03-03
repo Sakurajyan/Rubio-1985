@@ -1,0 +1,280 @@
+% \documentclass{report}
+% \usepackage{amsthm}
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage{amsfonts}
+% \usepackage{xcolor}
+% \usepackage{mathrsfs}
+% \newtheorem{remark}{Remark}
+% \newtheorem{theorem}{Theorem}
+% \newtheorem{definition}[theorem]{Definition}
+% \newtheorem{lemma}[theorem]{Lemma}
+% \newtheorem{proposition}[theorem]{Proposition}
+% \newtheorem{corollary}[theorem]{Corollary}
+% \numberwithin{theorem}{subsection}
+% \numberwithin{remark}{subsection}
+% \newcommand{\norm}[1]{\lVert#1\rVert}
+% \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+% \newcommand{\absl}[1]{\lvert#1\rvert}
+% \renewcommand{\Re}{\operatorname{Re}}
+% \renewcommand{\Im}{\operatorname{Im}}
+% \newcommand{\sgn}{\operatorname{sgn}}
+% \newcommand{\sign}{\operatorname{sign}}
+% \newcommand{\BMO}{\operatorname{BMO}}
+% \begin{document}
+\section{Singular Integral Operators}
+In this section we show how Calderon-Zygmund decomposition is used in estimation of the convolution operator $T$, which defined on Schwartz space $\mathscr{S}$,
+$T(f)=K*f(x)$. The definition of singular integral operator given in book is different from others like that in Stein's \emph{Singular Integrals and Differentiability Properties of Functions}.
+\begin{definition}
+    Given a tempered distribution $K$, the convolution operator
+    \begin{equation*}
+        T f(x)=K*f(x)\quad (f\in\mathscr{S}(\mathbb{R}^n))
+    \end{equation*}
+    is called a singular integral operator if the following two conditions are satisfied:
+    \begin{enumerate}
+        \item $\hat{K}\in L^\infty(\mathbb{R}^n)$
+        \item $K$ coincides in $\mathbb{R}^n\setminus\{0\}$ with a locally integrable function $K(x)$ satisfying Hormander's condition:
+              \begin{equation*}
+                  \int_{\abs{x}>2\abs{y}}\abs{K(x-y)-K(x)}dx\leq B_k
+              \end{equation*}
+    \end{enumerate}
+\end{definition}
+Later we will see these two conditions guarantee the boundedness of $T(f)$.
+\subsection{Hormander's condition}
+If a locally integrable function $k(x)$ satisfying Hormander's condition and following two conditions:
+\begin{equation*}
+    \int_{r<\abs{x}<2r}\abs{k(x)}dx\leq C_1
+\end{equation*}
+\begin{equation*}
+    \left\{
+    \begin{aligned}
+         & \abs{\int_{r<\abs{x}<R}k(x)dx}\leq C_2       \\
+         & \lim_{r\to 0}\int_{r<\abs{x}<1}k(x)dx~exists
+    \end{aligned}
+    \right.
+\end{equation*}
+Then $T f(x)=\lim_{\epsilon\to 0}\int_{\abs{y}>\epsilon}k(x-y)f(y)dy$ is a singular integrable operator (Proposition 5.5 in book). In other words, $\norm{\hat{k}}_\infty<\infty$\par
+If we let a locally integrable function $k(x)$ be $\Omega(x)\abs{x}^{-n}$ with $\Omega$ homogeneous of degree 0 ($\Omega(rx)=\Omega(x)$ for $r\neq 0$). Then the following continuity condition on $\Omega$ ensures Hormander condition holds:
+\begin{equation*}
+    \int_0^1{w_1(\Omega;t)\frac{dt}{t}<\infty}
+\end{equation*}
+where
+\begin{equation*}
+    w_1(\Omega;t)=\sup_{h\in\mathbb{R}^n, \abs{h}\leq t}\int_{\abs{x'}=1}{\abs{\Omega(x'+h)-\Omega{(x')}}d\sigma(x')}
+\end{equation*}
+Then $T f(x)=\lim_{\epsilon\to 0}\int_{\abs{y}>\epsilon}\Omega(y)\abs{y}^{-n}f(x-y)d y$ is a singular integrable operator. The condition $\norm{\hat{k}}_\infty<\infty$ is ensured by explict formula for $\hat{k}=m(\xi)$ if $\Omega$ is odd:
+\begin{equation*}
+    m(\xi)=-\frac{\pi i}{2}\int_{\abs{x'}=1}\Omega(x')\sign(x'\cdot\xi)d\sigma(x')
+\end{equation*}
+where $\sign x=\frac{x}{\abs{x}}$ (Proposition 5.6 in book). If $\Omega$ is not necessarily odd then the formula for $m(\xi)$ is (refer section 4.2 in chapter 2 in Stein's \emph{Singular Integrals and Differentiability Properties of Functions}):
+\begin{equation*}
+    m(\xi)=\frac{\pi i}{2}\int_{\abs{x'}=1}{(\sign(x'\cdot\xi)+\log{(\frac{1}{\abs{x'\cdot\xi}})})\Omega(x')d\sigma(x')}
+\end{equation*}
+\begin{remark}
+    Equation
+    \begin{equation*}
+        \frac{\pi}{2}c_n\int_{\abs{x'}=1}(x'\cdot h)\sign(x'\cdot\xi)d\sigma(x')=\frac{\xi\cdot h}{\abs{\xi}}
+    \end{equation*}
+    is by riesz representation for Hilbert space. If we fix $\xi$ with $\abs{\xi}=1$, then left hand side is a linear function of $h$, say $\ell(h)$. Since
+    \begin{equation*}
+        \abs{\ell(h)}\leq\frac{\pi}{2}c_n\int_{\abs{x'}=1}\abs{x'}\abs{h}d\sigma(x')=\frac{\pi}{2}c_n\int_{\abs{x'}=1}\abs{h}d\sigma(x')=\abs{h}
+    \end{equation*}
+    , $\ell(h)$ is continuous linear functional with $\norm{\ell}\leq 1$. Thus $\ell(h)=(h,g)$ for some $g\in\mathbb{R}^n$ with $\abs{g}=\norm{\ell}\leq 1$. Notice
+    \begin{equation*}
+        \ell(\xi)=\frac{\pi}{2}c_n\int_{\abs{x'}=1}(x'\cdot\xi)\sign(x'\cdot\xi)d\sigma(x')=\frac{\pi}{2}c_n\int_{\abs{x'}=1}\abs{x'\cdot\xi}d\sigma(x')=1
+    \end{equation*}
+    Thus $\norm{\ell}=1$ with $\abs{g}=1$ and $1=\ell(\xi)=(\xi,g)\leq\abs{\xi}\abs{g}=1$. The inequality holds if and only if $g=k\xi$ for some $k\in\mathbb{R}$. Thus $g=\xi$ and $\ell(h)=(h,\xi)$
+\end{remark}
+\subsection{Estimation of singular integral operator}
+The following theorem is the main result concerning singular integral operators:
+\begin{theorem}[theorem 5.7 in book]
+    Every singular integral operator satisfies the inequalities
+    \begin{equation}
+        \norm{Tf}_p\leq C_p\norm{f}_p\quad (f\in L^2\cap L^p;1<p<\infty)
+    \end{equation}
+    \begin{equation}\label{ieq: case p=1}
+        \abs{\{x:\abs{Tf(x)}>t\}}\leq \frac{C_1}{t}\norm{f}_1\quad (f\in L^2\cap L^1)
+    \end{equation}
+    \begin{equation}\label{ieq: case p=infty}
+        \norm{Tf}_{\BMO}\leq C_\infty\norm{f}_\infty\quad (f\in L^2\cap L^\infty)
+    \end{equation}
+    where $C_p$, $1\leq p\leq\infty$, depends only on $p$, $n$ and on the constants $\norm{\hat{K}}_\infty$ and $B_K$ of the kernel.
+\end{theorem}
+To prove this theorem, we only need to prove three case $p=1$, $p=2$, and $p=\infty$ and use Marcinkiewicz interpolation theorem in section 2 to derive $1< p<2$ case. And use another interpolation theorem 3.7 in section 3 to derive $2< p<\infty$ case.\par
+\begin{remark}[notes on proof of inequality \eqref{ieq: case p=1}]
+    The key idea to prove the case $p=1$ is Calderon-Zygmund decomposition. First we can split the space into a family of non-overlapping cubes $C_t$ and a set $\mathbb{R}^n\setminus\cup_{Q\in C_t}Q$. These sets satisfy:
+    \begin{enumerate}
+        \item For every $Q\in C_t$, $t<\frac{1}{\abs{Q}}\int_{\abs{Q}}{\abs{f(x)}dx}\leq 2^nt$
+        \item For a.e. $X\notin \cup_{Q\in C_t}Q$, $\abs{f(x)}\leq t$
+    \end{enumerate}
+    Let $\Omega=\cup_{Q\in C_t}Q$.  For any function $f\in L^1$, the Calderon-Zygmund decomposition of $f(x)=g(x)+b(x)$ is:
+    \begin{equation*}
+        g(x)=\sum_j{(\frac{1}{\abs{Q_j}}\int_{Q_j}{f(t)dt})\chi_{Q_j}(x)+f(x)\chi_{\mathbb{R}^n\setminus\Omega}(x)}
+    \end{equation*}
+    and
+    \begin{equation*}
+        b(x)=f(x)-g(x)=\sum_jb_j(x)=\sum_j{(f(x)-\frac{1}{\abs{Q_j}}\int_{Q_j}f(t)d t)}\chi_{Q_j}(x)
+    \end{equation*}
+    Generally, to estimate the size of the set $\{x:\abs{f(x)}>c\}$, we can use $(\frac{\abs{f(x)}}{c})^p>1$ in that set and integral the index function of that set on $\mathbb{R}^n$:
+    \begin{equation*}
+        \abs{\{x:\abs{f(x)}>c\}}=\int_{\abs{\{x:\abs{f(x)}>c\}}}1dt\leq\int_{\abs{\{x:\abs{f(x)}>c\}}}\left(\frac{\abs{f(x)}}{c}\right)^p d t\leq\frac{1}{c^p}\int\abs{f(x)}^p d t
+    \end{equation*}
+    This inequality sometimes called Markov inequality.
+\end{remark}
+\begin{remark}[notes on proof of lemma 5.11 in book]
+    {\color{blue}In proof of theorem 5.20 in book, it says $f\in L^\infty_c$ was only imposed to ensure the $I_\epsilon=\int_{\abs{y}>\epsilon}{K(-y)f(y)dy}$ exists}.
+    $M_pf(x)$ increases as p increases by Holder inequality. let $r<q$, $\frac{1}{r}=\frac{1}{p}+\frac{1}{q}$, we have
+    \begin{align*}
+        (\frac{1}{\abs{Q}}\int_{Q}\abs{f(t)}^r d t)^\frac{1}{r} & \leq \frac{1}{\abs{Q}^\frac{1}{r}}(\int_{Q}\abs{f(t)}^p d t)^\frac{1}{p} (\int_{Q}1^q d t)^\frac{1}{q}=\frac{\abs{Q}^\frac{1}{q}}{\abs{Q}^\frac{1}{r}}(\int_{Q}\abs{f(t)}^p d t)^\frac{1}{p} \\
+                                                                & =\frac{1}{\abs{Q}^\frac{1}{p}}(\int_{Q}\abs{f(t)}^p d t)^\frac{1}{p}=(\frac{1}{\abs{Q}}\int_{Q}\abs{f(t)}^p d t)^\frac{1}{p}
+    \end{align*}
+
+\end{remark}
+\begin{remark}[notes on proof of inequality \eqref{ieq: case p=infty}]
+    We have $(Tf)^\#(0)=\sup_{0\in Q}\frac{1}{\abs{Q}}\int_Q{\abs{Tf(y)-(Tf)_Q}dy}$ with $(Tf)_Q=\frac{1}{\abs{Q}}\int_Q{Tf(x)dx}$\par
+    We know $(T f)^\#(x)\cong\sup_{x\in Q}\inf_{a\in\mathbb{R}}\frac{1}{\abs{Q}}\int_Q{\abs{Tf(y)-a}dy}$, where $\cong$ is used to indicate that each side is bounded by the other times an absolute constant (refer equation (3.1) in section 3, chapter 2 in book).\par
+    {\color{blue}Observe that the cube $[-r,r]^n$ containing 0 is almost everywhere contained in the open ball $B(0,n^\frac{1}{2}r)$. Let $d$ be the side length of $Q$. Let $Q^2$ be the cube with origin as center and with side length 2 times that of $Q$. $0\in Q$ implies $Q\subset Q^2$. Thus 
+    \begin{align*}
+        (T f)^\#(0)&\leq C\sup_{0\in Q}\inf_{a\in\mathbb{R}}\frac{1}{\abs{Q}}\int_Q{\abs{Tf(y)-a}dy}\\
+                    &\leq C\sup_{r>0}\inf_{a\in\mathbb{R}}\frac{1}{2^nr^n}\int_{B(0,n^\frac{1}{2}r)}{\abs{Tf(y)-a}dy}\\
+                    &\leq C\sup_{r>0}\frac{1}{2^nr^n}\int_{\abs{y}\leq n^\frac{1}{2}r}{\abs{Tf(y)-I_\epsilon}dy}\\
+                    & =C'\sup_{\epsilon>0}\epsilon^{-n}\int_{\abs{y}\leq \frac{\epsilon}{2}}{\abs{Tf(y)-I_\epsilon}dy}\\
+    \end{align*}
+    }.\par
+    To estimate $\epsilon^{-n}\int_{\abs{x}<\frac{\epsilon}{2}}{\abs{Tf(x)-I_\epsilon}dx}$, we use lemma 7.11 in book and Hormander's condition:
+    \begin{align*}
+             & \epsilon^{-n}\int_{\abs{x}<\frac{\epsilon}{2}}{\abs{Tf(x)-I_\epsilon}dx}                                                  \\
+        \leq & C_pM_pf(0)+\epsilon^{-n}\iint_{2\abs{x}<\epsilon<\abs{y}}{\abs{K(x-y)-K(-y)}\abs{f(y)}dxd y}                              \\
+        \leq & C_p\norm{f}_\infty+\norm{f}_\infty\epsilon^{-n}\iint_{2\abs{x}<\epsilon<\abs{y}}{\abs{K(x-y)-K(-y)}dxdy}                  \\
+        \leq & C_p\norm{f}_\infty+\norm{f}_\infty\epsilon^{-n}\int_{2\abs{x}<\epsilon}{(\int_{2\abs{x}<\abs{y}}\abs{K(x-y)-K(-y)}d y)dx} \\
+        =    & C_p\norm{f}_\infty+\norm{f}_\infty\epsilon^{-n}\int_{2\abs{x}<\epsilon}{(\int_{2\abs{x}<\abs{y}}\abs{K(y-x)-K(y)}d y)dx}  \\
+        \leq & C_p\norm{f}_\infty+\norm{f}_\infty\epsilon^{-n}\int_{2\abs{x}<\epsilon}{B_kdx}                                            \\
+        =    & C_p\norm{f}_\infty+B_k\norm{f}_\infty
+    \end{align*}
+    We can change the sign of $x$ and $y$ in fifth line since the region is symmetric.
+\end{remark}
+\begin{remark}
+    {\color{blue}I don't know why $\frac{1}{\pi}\log{\abs{\frac{x-a}{x-b}}}$, with $a<b$ is in $weak-L^1\cap\BMO$}.
+\end{remark}
+\subsection{Restriction and extension of singular integral operator}
+To understand the behavior of singular integral operators in $L^1$ and $L^\infty$, we ask if there is a subspace of $L^1$, on which
+the singular integral operator is strong type $(1,1)$, and if the singular integral operator can "extend" from $L^2\cap L^\infty$ to $L^\infty$.\par
+For the first question, we introduce the Banach space $H^1_{at}$ (atomic $H^1$). More study of $H^1_{at}$ is in Chapter 3. You can also refer section 5 and 6 in chapter 2 in Stein's
+\emph{Functional Analysis}.\par
+For the second question, notice $L^p\cap L^\infty$ is not dense in $L^\infty$. The extension is not a trivial step. However, the function $f$ and $f+C$ with constant $C$
+behavior the same in space $\BMO$. Thus we introduce our definition of new $T$ on $L^\infty$.
+\begin{proposition}[proposition 5.15 in book]
+    Given a singular integral operator $T$ with kernel $K$, for each $f\in L^\infty$ we define:
+    \begin{equation*}
+        T f(x)=\lim_{j\to\infty}{(T(f\chi_{B_j})(x)-\int_{1<\abs{y}<j}K(-y)f(y)d y)}
+    \end{equation*}
+    The sequence to the right converges locally in $L^1$ and also pointwise a.e., and the extended operator $T$ satisfies:
+    \begin{equation}
+        \norm{Tf}_{\BMO}\leq C_\infty\norm{f}_\infty\quad (f\in L^\infty)
+    \end{equation}
+\end{proposition}
+\begin{remark}[notes on proof of proposition 5.15 in book]
+    {\color{blue}It is not clear that $g_j(x)$ converges pointwise}. $g_j(x)$ in $L^1(F)$ since $g_l(x)\in L^1(F)$ and the integral is bounded by $B_K\norm{f}_\infty$ and $F$ is compact.\par
+\end{remark}
+\subsection{More precise estimation for more regular kernel}
+If the kernel is more regular, the estimation of operator $T$ can be replaced by maximal function. More precisely:
+\begin{definition}[definition 5.17 in book]
+    A singular integral operator $Tf=K*f$ is called regular if its kernel satisfies the following two conditions:
+    \begin{enumerate}
+        \item $\abs{K(x)}\leq B\abs{x}^{-n}$ for $x\neq 0$
+        \item $\abs{K(x-y)-K(x)}\leq B\abs{y}\abs{x}^{-n-1}$ for $\abs{x}>2\abs{y}>0$
+    \end{enumerate}
+\end{definition}
+
+Let $T_\epsilon f(x)=\int_{\abs{y}>\epsilon}{K(y)f(x-y)dy}$ and $T^*f(x)=\sup_{\epsilon>0}{\abs{T_\epsilon f(x)}}$. The estimation is the following:
+\begin{theorem}[theorem 5.20 in book]
+    If $T$ is a regular singular integral operator and $f\in L^p$, $1\leq p<\infty$, then the following inequalities are verified:
+    \begin{enumerate}
+        \item $(Tf)^\#(x)\leq C_qM_qf(x)\quad (q>1)$
+        \item $T^*f(x)\leq C_qM_qf(x)+CM(Tf)(x)\quad (q>1)$
+        \item $\norm{T^*f}_p\leq C_p\norm{f}_p\quad (1<p<\infty)$
+        \item $\abs{\{x:T^*f(x)>t\}}\leq Ct^{-1}\norm{f}_1\quad (t>0)$
+    \end{enumerate}
+\end{theorem}
+\begin{remark}[notes on proof of theorem 5.20 in book]
+    3 is a trivial consequence of 2 and the $L^p$ inequalities for the operators $M$ and $T$. The $L^p$ inequality for operator $M_q$ is similar with operator $M$.
+    By 2, $\norm{T^*f}_p\leq \norm{C_qM_qf}_p+\norm{CM(Tf)}_p$, and $\norm{CM(Tf)}_p\leq C'\norm{Tf}_p\leq C''\norm{f}_p$.\par
+    Now we prove the $L^p$ inequality for operator $M_q$. We choose $q$ with $1<q<p$:
+        \begin{align*}
+            \int_{\mathbb{R}^n}(M_q f(x))^p dx&=p\int_0^\infty  t^{p-1}\abs{\{x:M_qf(x)>t\}}d t \\
+            &=p\int_0^\infty  t^{p-1}\abs{\{x:\sup((\frac{1}{\abs{Q}}\int_{Q}\abs{f(t)}^q d t)^\frac{1}{q})>t\}}d t\\
+            &=p\int_0^\infty t^{p-1}\abs{\{x:\sup((\frac{1}{\abs{Q}}\int_{Q}\abs{f(t)}^q d t))>t^q\}}d t\\
+            &\leq C p\int_0^\infty t^{p-1}\int_{\{x:\abs{f(x)}^q>\frac{t^q}{2}\}}\frac{\abs{f(x)}^q}{t^q}d x d t\\
+            &=C p\int_0^\infty \int_{\mathbb{R}^n}t^{p-1}\frac{\abs{f(x)}^q}{t^q}\chi_{\{x:\abs{f(x)}^q>\frac{t^q}{2}\}}dx d t\\
+            &=C p\int_{\mathbb{R}^n}\int_0^{\abs{f(x)}2^{\frac{1}{q}}} t^{p-1-q}\abs{f(x)}^q d x d t\\
+            &=\frac{Cp}{p-q}\int_{\mathbb{R}^n} (\abs{f(x)}2^{\frac{1}{q}})^{p-q}\abs{f(x)}^q d t\\
+            &=\frac{Cp2^{\frac{p-q}{q}}}{p-q}\int_{\mathbb{R}^n}\abs{f(x)}^p d t\\
+        \end{align*}
+
+ Thus $\norm{T^*f}_p\leq \norm{C_qM_qf}_p+\norm{CM(Tf)}_p\leq C\norm{f}_p$
+\end{remark}
+
+\begin{remark} [notes on corollary 5.22 in book]
+    Notice (5.19) implies (b) in definition 5.1. By easy computation (5.18) implies (5.3). By proposition 5.5 in book,
+    5.1(b), (5.3) and (5.4) implies that $T=k*f$ is a singular integral operator. {\color{blue}It is not clear how to pass $\mathscr{S}(\mathbb{R}^n)$ to $L^p(\mathbb{R}^n)$}.\par
+
+\end{remark}
+\subsection{Proof of proposition 5.5 and 5.6 in book}
+\begin{remark}[notes on proof of proposition 5.5 in book]
+    Let $A=\{x:\epsilon<\abs{x}<R\}$, $B=\{x:\epsilon<\abs{x-y}<R\}$, $C=\{x:\abs{x-y}\leq\epsilon\}$ and $B=\{x:\abs{x-y}\geq R\}$
+    \begin{align*}
+             & \int_{\mathbb{R}^n}\abs{k_\epsilon^R(x-y)-k_\epsilon^R(x)}dx                                                                            \\
+        =    & \int_{A\cap B}\abs{k_\epsilon^R(x-y)-k_\epsilon^R(x)}dx+\int_{\mathbb{R}^n\setminus (A\cap B)}\abs{k_\epsilon^R(x-y)-k_\epsilon^R(x)}dx \\
+        =    & \int_{A\cap B}\abs{k(x-y)-k(x)}dx+\int_{A^c\cup B^c}\abs{k_\epsilon^R(x-y)-k_\epsilon^R(x)}dx                                           \\
+        \leq & \int_{A}\abs{k(x-y)-k(x)}dx+\int_{A^c}\abs{k_\epsilon^R(x-y)-k_\epsilon^R(x)}dx  +\int_{B^c}\abs{k_\epsilon^R(x-y)-k_\epsilon^R(x)}dx   \\
+        =    & \int_{A}\abs{k(x-y)-k(x)}dx+\int_{A^c}\abs{k_\epsilon^R(x-y)}dx  +\int_{B^c}\abs{k_\epsilon^R(x)}dx                                     \\
+        =    & \int_{A}\abs{k(x-y)-k(x)}dx+\int_{A^c\cap B}\abs{k(x-y)}dx  +\int_{B^c\cap A}\abs{k(x)}dx                                               \\
+        =    & \int_{A}\abs{k(x-y)-k(x)}dx+\int_{A^c\cap B}\abs{k(x-y)}dx  +\int_{C\cap A}\abs{k(x)}dx+\int_{D\cap A}\abs{k(x)}dx
+    \end{align*}
+    If $x\in C$, $\abs{x}-\abs{y}\leq\abs{x-y}\leq\epsilon$,  then $C\subset \{x:\abs{x}\leq \epsilon+\abs{y}\}$. If $x\in D$, $\abs{x}+\abs{y}\geq\abs{x-y}\geq R$,  then $D\subset \{x:R-\abs{y}\leq\abs{x}\leq R\}$. Since $R$ is large enough and $\epsilon$ is small enough, we have  $C\cap A\subset \{x:\epsilon<\abs{x}\leq\epsilon+\abs{y}\}$ and $D\cap A\subset \{x:R-\abs{y}\leq\abs{x}\leq R\}$. Thus
+    \begin{equation*}
+        \int_{C\cap A}\abs{k(x)}dx+\int_{D\cap A}\abs{k(x)}dx\leq\int_{\epsilon<\abs{x}\leq \epsilon+\abs{y}}\abs{k(x)}dx+\int_{R-\abs{y}\leq\abs{x}< R}\abs{k(x)}dx
+    \end{equation*}
+    Let $x-y=t$,
+    \begin{equation*}
+        \int_{A^c\cap B}\abs{k(x-y)}dx=\int_{\epsilon<\abs{t}<R~and~\abs{t+y}\leq\epsilon}\abs{k(t)}d t+\int_{\epsilon<\abs{t}<R~and~\abs{t+y}\geq R}\abs{k(t)}d t
+    \end{equation*}
+    Use almost the same argument,  we can show:
+    \begin{equation*}
+        \int_{A^c\cap B}\abs{k(x-y)}dx\leq\int_{\epsilon<\abs{x}\leq \epsilon+\abs{y}}\abs{k(x)}dx+\int_{R-\abs{y}\leq\abs{x}< R}\abs{k(x)}dx
+    \end{equation*}
+    Thus
+    \begin{align*}
+        \int_{\mathbb{R}^n}\abs{k_\epsilon^R(x-y)-k_\epsilon^R(x)}dx & \leq 2\int_{\epsilon<\abs{x}\leq \epsilon+\abs{y}}\abs{k(x)}dx+2\int_{R-\abs{y}\leq\abs{x}< R}\abs{k(x)}dx \\
+                                                                     & +\int_{A}\abs{k(x-y)-k(x)}dx
+    \end{align*}
+    \par
+    $\int_{r<\abs{x}<2r}\abs{k(x)}dx\leq C_1$ implies $\int_{\abs{x}<r}\abs{k(x)}\abs{x}dx\leq 4C_1r$:
+    \begin{align*}
+        \int_{\abs{x}<r}\abs{k(x)}\abs{x}dx= & \sum_{j=0}^\infty{\int_{\frac{r}{2^{j+1}}\abs{x}<\frac{r}{2^j}}\abs{k(x)}\abs{x}dx}\leq\sum_{j=0}^\infty{\int_{\frac{r}{2^{j+1}}\abs{x}<\frac{r}{2^j}}\abs{k(x)}\frac{r}{2^j}dx} \\
+        =                                    & \sum_{j=0}^\infty{C_1\frac{r}{2^j}}=2C_1r
+    \end{align*}
+    $\int_{\abs{x}<r}\abs{k(x)}\abs{x}dx\leq 4C_1r$ implies $\int_{r<\abs{x}<2r}\abs{k(x)}dx\leq C_1$:
+    \begin{align*}
+        \int_{r<\abs{x}<2r}\abs{k(x)}dx\leq & \int_{r<\abs{x}<2r}\abs{k(x)}\frac{\abs{x}}{r}dx=\frac{1}{r}\int_{r<\abs{x}<2r}\abs{k(x)}\abs{x}dx \\
+        \leq                                & \frac{1}{r}\int_{\abs{x}<2r}\abs{k(x)}\abs{x}dx\leq\frac{1}{r}8C_1r=8C_1
+    \end{align*}
+    Thus $\int_{r<\abs{x}<2r}\abs{k(x)}dx\leq C_1$ and $\int_{\abs{x}<r}\abs{k(x)}\abs{x}dx\leq 4C_1r$ are equivalent.
+\end{remark}
+\begin{remark}[notes on proof of proposition 5.6 in book]
+    Let $tx'=x-y$, we have:
+    \begin{align*}
+        \int_{\abs{x}>2\abs{y}}{\frac{\abs{\Omega(x-y)-\Omega(x)}}{\abs{x-y}^n}dx}= & \int_{\abs{tx'+y}>2\abs{y}}{\frac{\abs{\Omega(tx')-\Omega(tx'+y)}}{t^n}d(tx'+y)}            \\
+        \leq                                                                        & \int_{\abs{tx'}+\abs{y}>2\abs{y}}{\frac{\abs{\Omega(tx')-\Omega(tx'+y)}}{t^n}d(tx')}        \\
+        =                                                                           & \iint_{{t}>\abs{y}}{\frac{\abs{\Omega(tx')-\Omega(tx'+y)}}{t^n}t^{n-1}d t d\sigma(x')}        \\
+        =                                                                           & \int_{{t}>\abs{y}}\int_{\abs{x'}=1}{\abs{\Omega(tx')-\Omega(tx'+y)}d\sigma(x')\frac{dt}{t}}
+    \end{align*}
+   By mean value theorem, we have $\abs{x-y}^{-n}-\abs{x}^{-n}=n\frac{y\cdot \xi}{\abs{\xi}^{n+2}}$ with $\xi=(1-c)(x-y)+cx=x-(1-c)y$. Notice $\abs{\xi}\geq \abs{x}-(1-c)\abs{y}\geq \abs{x}-\abs{y}$. Since $\abs{y}\leq \frac{\abs{x}}{2}$, $\abs{\xi}\geq \frac{\abs{x}}{2}$. Thus 
+    \begin{equation*}
+        \abs{\abs{x-y}^{-n}-\abs{x}^{-n}}\leq n\frac{\abs{y}\abs{ \xi}}{\abs{\xi}^{n+2}}\leq n2^{n+1}\frac{\abs{y}}{\abs{x}^{n+1}}
+    \end{equation*}
+\end{remark}
+% \end{document}
+
+
+
