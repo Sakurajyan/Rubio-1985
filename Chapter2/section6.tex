@@ -1,0 +1,415 @@
+\documentclass{report}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{xcolor}
+\usepackage{mathrsfs}
+\usepackage[framemethod=tikz]{mdframed}
+
+
+\theoremstyle{definition}
+\newmdtheoremenv[
+  hidealllines=true,
+  leftline=true,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=0pt,
+]{remark}{Remark}
+\newtheorem{note}{Note}
+
+\theoremstyle{definition}
+\newmdtheoremenv[
+    hidealllines=true,
+    innerleftmargin=0pt,
+    innerrightmargin=0pt,
+    fontcolor=red
+]{errata}{Errata}
+% \newtheorem{remark}{Remark}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\numberwithin{theorem}{subsection}
+\numberwithin{remark}{subsection}
+\newcommand{\norm}[1]{\lVert#1\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\absl}[1]{\lvert#1\rvert}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\sign}{\operatorname{sign}}
+\newcommand{\BMO}{\operatorname{BMO}}
+\newcommand{\argmax}{\operatorname{argmax}}
+\newcommand{\supp}{\operatorname{supp}}
+
+\begin{document}
+\section{Multipliers}
+In this section, we keep talk about the convergence property and norm estimate of convolution operator. In last section, we know
+some convolution operator can not be defined as usual Lebesgue integral but a limit process called singular integral. The stimulation of
+studying the convolution operator is that the convolution operator is equivalent to translation invariant operator.\par
+Suppose $Tg=\int f(x-y)g(y)dy$ is a convolution operator. Then by Fourier transform, we have $(Tf)^\wedge=\hat{f}\hat{g}$. The  concept of multipliers give us another approach to study the convolution operator $T$:
+\begin{definition}
+    Let $1\leq p<\infty$. Given $m\in L^\infty$, we say that $m$ is a (Fourier) multiplier for $L^p$ if the operator
+    $T_m$, initially defined in $L^2$ by the relation:
+    \begin{equation*}
+        (T_mf)^\wedge(\xi)=m(\xi)\hat{f}(\xi)
+    \end{equation*}
+    satisfies the inequality
+    \begin{equation*}
+        \norm{T_mf}_p\leq C\norm{f}_p  \quad (f\in L^2\cap L^p)
+    \end{equation*}
+\end{definition}
+
+\begin{remark}
+    {\color{blue} Given a sequence of kernels $(k_N)_N$ in $L^1$, if $T_Nf=k_N*f$ are uniformly bounded from $\mathscr{S}$ to $L^p$,
+        it is easy to see $(T_N)_N$ is a Cauchy sequence of in bounded linear functional space $\mathscr{B}(\mathscr{S},L^p)$ ($\mathscr{B}(\mathscr{S},L^p)$ is complete by
+        assigning $L^p$ norm on $\mathscr{S}$ and completeness of $L^p$), then the limit of $T_N$ exists.
+        Indeed, under hypothesis, proposition 5.5 in book gives $T_Nf$ is a singular integral for $f\in \mathscr{S}(\mathbb{R}^n)$ and $T_N$ is uniformly bounded.
+        Since $\mathscr{S}(\mathbb{R}^n)$ is dense in $L^p$, $T$ can be uniquely extends to $L^p$}.\par
+    Notice that the limit process agrees the definition of singular integral.
+\end{remark}
+
+\subsection{Hormander-Mihlin multiplier theorem}
+We know every $m\in L^\infty$ is a multiplier for $L^2$ by Plancherel's theorem. The Hormander-Mihlin multiplier theorem gives a
+sufficient condition for $m\in L^\infty$ is a multiplier for $L^p$.
+\begin{theorem}[Hormander-Mihlin multiplier theorem]
+    Let $a=[\frac{n}{2}]+1$ be the first integer greater than $\frac{n}{2}$. If $m\in L^\infty(\mathbb{R}^n)$ is of class $C^a$ outside the origin
+    and satisfies:
+    \begin{equation}\label{hypothesis of H-M multiplier theorem}
+        (R^{-n}\int_{R<\abs{x}<2R}\abs{D^\alpha m(\xi)}^2d\xi)^{\frac{1}{2}}\leq CR^{-\abs{\alpha}}\quad (0<R<\infty)
+    \end{equation}
+    for every multi-index $\alpha$ such that $\abs{\alpha}\leq a$, then $m$ is a multiplier for $L^{p}$, $1<p<\infty$.
+\end{theorem}
+This theorem is an improvement of Mihlin multiplier theorem. Mihlin multiplier theorem supposes a
+stronger condition:
+\begin{equation}\label{ieq: Mihlin condition}
+    \abs{D^\alpha m(\xi)}\leq CR^{-\abs{\alpha}}\quad (\abs{\alpha}\leq a)
+\end{equation}
+In other words, Hormander weaken the decreasing speed as $\alpha$ increasing. The decreasing of  uniform boundedness of $\abs{D^\alpha m(\xi)}$ is weakened to the decreasing of $L^{2}$ norm of $\abs{D^\alpha m(\xi)}$.\par
+Inequality \eqref{ieq: Mihlin condition} is satisfied by every function $m(\xi)$ of class $C^{a}$ outside the origin of degree $ib$.
+Indeed by chain rule: $\frac{\partial}{\partial x_i}(f_i(tx))=f_i(tx)t$. And $\frac{\partial}{\partial x_i}(t^pf_i(x))=t^pf_i(x)\leq C\abs{\xi}^{-1}$. We have
+$f_i(tx)t=t^pf_i(x)$. Thus $\abs{m_i(\xi)}=\abs{\abs{\xi}^{ib-1}m_i(x')}=\frac{\abs{m_i(x')}}{\abs{\xi}}$ with $\abs{x'}=1$.
+By induction, $\abs{D^\alpha m(\xi)}\leq \frac{\abs{D^\alpha m(x')}}{\xi^{-\alpha}}$. Let
+\begin{equation*}
+    C=\max_{\abs{\alpha}\leq a}\sup_{\abs{x'}=1}\abs{D^\alpha m(x')}
+\end{equation*}
+. We have $\abs{D^\alpha m(\xi)}\leq C\abs{\xi}^{-\alpha}$\par
+There are two standard techniques in proof of the Hormander-Mihlin multiplier theorem. The first one is
+the smooth cutting of the multiplier into dyadic pieces.
+\begin{lemma}[Lemma 6.5 in book]
+    There is a non negative function $\phi\in C^\infty$ supported in the spherical shell $\{\xi: \frac{1}{2}\abs{\xi}<2\}$ such that
+    \begin{equation*}
+        \sum_{j\in\mathbb{Z}}\phi(2^{-j}\xi)=1\quad (\xi\neq 0)
+    \end{equation*}
+\end{lemma}
+The second is an explicit formulation of the
+well known fact that the regularity of the multiplier is translated into control of the size of kernel.
+\begin{lemma}[Lemma 6.6 in book]
+    Let $a=[\frac{n}{2}]+1$, and let $s$ be such that $a=\frac{n}{s}+\frac{1}{2}$ (so that $s\leq 2$). If $k\in L^2$ is
+    such that $\hat{k}$ is of class $C^a$, then,
+    \begin{equation*}
+        \int_{\abs{x}>t}\abs{k(x)}dx\leq C_n t^{-\frac{1}{2}}\max_{\abs{\alpha}=a}{\norm{D^{\alpha}\hat{k}}_s}\quad (0<t<\infty)
+    \end{equation*}
+\end{lemma}
+The details of proof of two lemmas and Hormander-Mihlin multiplier theorem is in book and the subsection \ref{details}.
+% For example, when $n=1$
+% \begin{align*}
+%     m'(\xi)&=\lim_{h\to 0}\frac{m(\xi+h)-m(\xi)}{h}=\lim_{k\to 0}\frac{m(\xi+k\xi)-m(\xi)}{k\xi}\\
+%     &=\lim_{k\to 0}\frac{(1+k)^{ib}-1}{k\xi}m(\xi)=i b \frac{m(\xi)}{\xi}
+% \end{align*}
+% Thus $\abs{m'(\xi)}=b \frac{\abs{m(\xi)}}{\abs{\xi}}=b\frac{\abs{\abs{\xi}^{ib}\abs{m(x')}}}{\abs{\xi}}=b\frac{\abs{m(x')}}{\abs{\xi}}\leq C\abs{\xi}^{-1}$.\par
+
+
+\subsection{More precise estimation for more regular multiplier}
+If we consider Mihlin multiplier theorem, the stronger condition \eqref{ieq: Mihlin condition} gives the smoothness of multipliers. And we have more precise estimation like Theorem 5.20 (i) in book.
+\begin{theorem}[theorem 6.10 in book]
+    Let $a$ be an integer such that $\frac{n}{2}<a\leq n$, and suppose that the multiplier $m(\xi)$ satisfies
+    \eqref{ieq: Mihlin condition} for all $\abs{\alpha}\leq a$. Then, for every $q>\frac{n}{a}$, the operator $T_m$ satisfies
+    \begin{equation*}
+        (T_mf)^\#(x)\leq C_qM_qf(x)\quad (f\in\cup_{1<p<\infty}L^p)
+    \end{equation*}
+\end{theorem}
+
+\subsection{Some properties of multipliers}
+\begin{theorem}\label{dual of multiplier}
+    $m$ is a multiplier for $L^p$ if and only if it is a multiplier for $L^{p'}$. And the norm of operator are identical.
+\end{theorem}
+\begin{proof}
+    I want to use:
+    \begin{align*}
+        \int T_mf(x)\overline{g(x)}dx & =\int (\int m(y)\hat{f}(y) e^{2\pi i x\cdot y}d y)\overline{g(x)}dx                      \\
+                                      & =\iint m(y)\hat{f}(y) e^{2\pi i x\cdot y}\overline{g(x)}d y d x                          \\
+                                      & =\iint m(y)(\int f(z)e^{-2\pi i y\cdot z}d z) e^{2\pi i x\cdot y}\overline{g(x)}d y d x  \\
+                                      & =\iiint m(y)f(z)e^{-2\pi i y\cdot z}e^{2\pi i x\cdot y}\overline{g(x)}d z d y d x        \\
+                                      & =\iint m(y)f(z)e^{-2\pi i y\cdot z}\overline{(\int e^{-2\pi i x\cdot y}{g(x)}dx)}d z d y \\
+                                      & =\iint m(y)f(z)e^{-2\pi i y\cdot z}\overline{\hat{g}(y)}d z d y                          \\
+                                      & =\int f(z)\overline{(\int \overline{m(y)}\hat{g}(y)e^{2\pi i y\cdot z}d y)}d z           \\
+                                      & =\int f(z)\overline{T_{\bar{m}}g(z)}d z                                                  \\
+    \end{align*}
+    By dual of $L^p$ and Hahn-Banach theorem,
+    \begin{align*}
+        \norm{T_m}= & \sup_{\norm{f}_p\leq 1}\norm{T_mf}_p                                                                                                                          \\
+        =           & \sup_{\norm{f}_p\leq 1}\sup_{\norm{g}_q\leq 1}\int T_mf\bar{g}=\sup_{\norm{f}_p\leq 1}\sup_{\norm{g}_q\leq 1}\int f\overline{T_{\bar{m}}g}=\norm{T_{\bar{m}}}
+    \end{align*}
+    Thus $m$ is a multiplier for $L^p$ if and only if $\bar{m}$ is a multiplier for $L^{p'}$. And the norm of operator are identical. And $\bar{m}$ is a multiplier for $L^{p'}$ implies $m$ is a multiplier for $L^{p'}$.
+    And their norms are equal.
+\end{proof}
+\begin{theorem}
+    If $m$ is a multiplier for $L^p$, then $m$ is a multiplier for $L^q$ with $p'<q<p$ or $p<q<p'$.
+\end{theorem}
+This theorem is by theorem \ref{dual of multiplier} and Marcinkiewicz' interpolation theorem. If we use Riesz-Thorin interpolation
+theorem, we can get estimation $\norm{T_m}_{p,p}\geq\norm{m}_\infty$.\par
+\begin{theorem}
+    The multipliers for $L^p$ form a subalgebra of $L^\infty(\mathbb{R}^n)$ which is invariant under
+    translations, rotations and dilations.
+\end{theorem}
+
+
+\subsection{Details of proof and errata}\label{details}
+\begin{note}[proof of lemma 6.1]
+    Since the constant $C_p$ depends only on $p$, $n$ and on the constants $\norm{\hat{K}}_{\infty}$ and $B_K$ of
+    the kernel, and $\norm{\hat{K}}_\infty$ and $B_K$ is bounded by hypothesis a) and b), $T_Nf=k_N*f$ are uniformly bounded.
+\end{note}
+\begin{errata}[P209]
+    $k_N=k\chi_{\{x:\frac{1}{N}\leq \abs{x}\leq N\}}$
+\end{errata}
+\begin{note}[proof of norm of $T_m$ as an operator from $L^2$ to $L^2$ is $\norm{m}_\infty$]
+    $T_m\leq\norm{m}_\infty$ is easy. To prove $T_m\geq\norm{m}_\infty$, by Plancherel's theorem, this is equivalent to
+    $\norm{\hat{Tf}}_2\geq\norm{m}_\infty\norm{\hat{f}}_2$ for some $\hat{f}$. For any $\epsilon>0$, let $A_\epsilon=\{x\in [0,1]:m(x)>\norm{m}_\infty-\epsilon\}$, $\hat{f}(\xi)=\chi_{A_\epsilon}$.
+    $\hat{Tf}=m\hat{f}>(\norm{m}_\infty-\epsilon)\hat{f}$ hence $\norm{\hat{Tf}}_2>(\norm{m}_\infty-\epsilon)\norm{\hat{f}}_2$. Thus $\norm{\hat{Tf}}_2\geq\norm{m}_\infty\norm{\hat{f}}_2$.
+\end{note}
+\begin{note}[proof of lemma 6.6 in book]
+    The proof of lemma 6.6 is bad formatted. We give the complete proof of lemma 6.6.\par
+    First we have $\abs{x}^a\leq (\sqrt{n\max_i{x_i}^2})^a\leq n^{\frac{a}{2}}max_i \abs{x_i}^a\leq n^{\frac{a}{2}}(\sum_i \abs{x_i}^a)$.\par
+    By $\abs{x}^a\leq n^{\frac{a}{2}}(\sum_i \abs{x_i}^a)$, Holder inequality and Minkowski inequality for $s'\geq 2$:
+    \begin{align*}
+        \int_{\abs{x}>t}^{}{\abs{k(x)}dx} & = \int_{\abs{x}>t}^{}{\frac{\sum_{j=1}^n(\abs{x_j}^a)\abs{k(x)}}{\sum_{j=1}^n(\abs{x_j}^a)}dx}                                     \\
+                                          & \leq \int_{\abs{x}>t}^{}{\frac{C\sum_{j=1}^n(\abs{x_j}^a)\abs{k(x)}}{\abs{x}^a}dx}                                                 \\
+                                          & \leq C(\int_{}(\sum_{j=1}^n(\abs{x_j^ak(x)})^{s'})dx)^{\frac{1}{s'}}  (\int_{\abs{x}>t}^{} \frac{1}{\abs{x}^{as}}dx)^{\frac{1}{s}} \\
+                                          & \leq C\sum_{j=1}^n(\int_{}\abs{x_j^ak(x)}^{s'}dx)^{\frac{1}{s'}}  (\int_{\abs{x}>t}^{} \frac{1}{\abs{x}^{as}}dx)^{\frac{1}{s}}     \\
+    \end{align*}
+    Notice $\frac{2}{3}\leq s\leq 2$, $n+\frac{1}{3}\leq as\leq n+1$. Thus $\int_{\abs{x}>t}^{} \frac{1}{\abs{x}^{as}}dx$ converges and
+    $(\int_{\abs{x}>t}^{} \frac{1}{\abs{x}^{as}}dx)^{\frac{1}{s}}=Ct^{-\frac{1}{2}}$.\par
+    Let $1\leq p\leq 2$ and $q$ is the dual exponent if $p$, the Hausdorff-Young inequality is:
+    \begin{equation*}
+        (\sum\abs{a_n}^q)^\frac{1}{q} \leq(\frac{1}{2\pi}\int_{0}^{2\pi}\abs{f(\theta)}^p d\theta)^\frac{1}{p}
+    \end{equation*}
+    and its dual:
+    \begin{equation*}
+        (\frac{1}{2\pi}\int_{0}^{2\pi}\abs{f(\theta)}^q d\theta)^\frac{1}{q}\leq(\sum\abs{a_n}^p)^\frac{1}{p}
+    \end{equation*}
+    But here it uses the analog for the Fourier transform (Corollary 2.6 in Chapter 2 in stein's \emph{Functional Analysis}):
+    \begin{theorem}\label{Hausdorff-Young inequality}
+        If $1\leq p\leq 2$ and $\frac{1}{p}+\frac{1}{q}=1$, then the Fourier transform $T$ has a unique extension to a bounded map from $L^p$ to $L^q$, with
+        $\norm{T(f)}_q\leq\norm{f}_p$
+    \end{theorem}
+    By Theorem \ref{Hausdorff-Young inequality} and property of Fourier transform.
+    \begin{align*}
+        (\int_{}\abs{(x_j^ak(x))}^{s'}dx)^{\frac{1}{s'}} & \leq (\int_{}\abs{(x_j^ak(x))^\wedge}^{s}dx)^{\frac{1}{s}}                                 \\
+                                                         & =(\int_{}\abs{(-2\pi i)^{-a}D_j^a\hat{k}(\xi)}^{s}dx)^{\frac{1}{s}}=C\norm{D_j^a\hat{k}}_s
+    \end{align*}
+    Thus
+    \begin{equation*}
+        \int_{\abs{x}>t}^{}{\abs{k(x)}dx}\leq Ct^{-\frac{1}{2}}\sum_{j=1}^n{\norm{D_j^a\hat{k}}_s}
+    \end{equation*}
+    Observe that $\sum_{j=1}^n{\norm{D_j^a\hat{k}}_s}\leq n\max_j{\norm{D_j^a\hat{k}}_s}\leq n\max_{\abs{\alpha}=a}{\norm{D^\alpha\hat{k}}_s}$. We finally prove that:
+    \begin{equation*}
+        \int_{\abs{x}>t}^{}{\abs{k(x)}dx}\leq Ct^{-\frac{1}{2}}\max_{\abs{\alpha}=a}{\norm{D^\alpha\hat{k}}_s}
+    \end{equation*}
+\end{note}
+
+
+\begin{errata}[P212]
+    By Leibnitz rule
+    \begin{equation*}
+        D^\alpha m_j(\xi)=\sum_{\alpha=\beta+\gamma}\binom{\abs{\alpha}}{\abs{\beta}} D^\beta m(\xi)2^{-j\abs{\gamma}}D^\gamma\phi(2^{-j}\xi)
+    \end{equation*}
+    with $\abs{\alpha}=\alpha_1+\alpha_2+\cdots+\alpha_n$
+\end{errata}
+\begin{errata}[P212]
+    $m=\sum_j m_j$ and at most two $m_j$ can be non zero at any point. We have
+    $\sum_j\abs{\hat{k_j}(\xi)}=\sum_j\abs{m_j(\xi)}\leq 2\norm{m}_\infty$
+\end{errata}
+\begin{errata}[P214]
+    $\abs{(2\pi y)^\gamma}\leq C\abs{y}^{\abs{\gamma}}$
+\end{errata}
+\begin{note}[proof of theorem 6.3 in book]
+    By Leibnitz rule we have
+    \begin{equation*}
+        D^\alpha m_j(\xi)=\sum_{\alpha=\beta+\gamma}\binom{\abs{\alpha}}{\abs{\beta}} D^\beta m(\xi)2^{-j\abs{\gamma}}D^\gamma\phi(2^{-j}\xi)
+    \end{equation*}
+    Since for each $\gamma$, $\abs{D^\gamma\phi(2^{-j}\xi)}$ is uniformly bounded and there are finite choice of $\gamma$, there is a
+    constant $C$ with $\abs{D^\gamma\phi(2^{-j}\xi)}\leq C$ for all $\xi$ and $\gamma$. Notice $\binom{\abs{\alpha}}{\abs{\beta}}$ is also bounded. Thus
+    \begin{equation*}
+        \abs{ D^\alpha m_j(\xi)}\leq C'\sum_{\abs{\beta}\leq \abs{\alpha}}\abs{D^\beta m(\xi)2^{-j\abs{\gamma}}}=C'2^{-j\abs{\alpha}}\sum_{\abs{\beta}\leq \abs{\alpha}}\abs{D^\beta m(\xi)2^{j\abs{\beta}}}
+    \end{equation*}
+    Now we estimate the norm of $D^\alpha m_j(\xi)$. Notice $\supp(m_j)\subset\{\xi:2^{j-1}\leq \abs{\xi}\leq 2^{j+1}\}$. Thus the support of $D^\alpha m_j(\xi)$ is also in $\{\xi:2^{j-1}\leq \abs{\xi}\leq 2^{j+1}\}$. Thus
+    only need to integrate each $D^\beta m(\xi)$ on $\{\xi:2^{j-1}\leq \abs{\xi}\leq 2^{j+1}\}$. By separate the region of integral:
+    \begin{align*}
+             & (\int_{2^{j-1}\leq \abs{\xi}\leq 2^{j+1}}\abs{D^\beta m(\xi)}^s d\xi)^{\frac{1}{s}}                                                                                   \\
+        \leq & (\int_{2^{j-1}\leq \abs{\xi}\leq 2^{j}}\abs{D^\beta m(\xi)}^s d\xi)^{\frac{1}{s}}+  (\int_{2^{j}\leq \abs{\xi}\leq 2^{j+1}}\abs{D^\beta m(\xi)}^s d\xi)^{\frac{1}{s}}
+    \end{align*}
+    By Holder inequality and hypothesis \eqref{hypothesis of H-M multiplier theorem}, the first integral on right hand side is:
+    \begin{align*}
+             & (\int_{2^{j-1}\leq \abs{\xi}\leq 2^{j}}\abs{D^\beta m(\xi)}^s d\xi)^{\frac{1}{s}}                                                                          \\
+        \leq & (\int_{2^{j-1}\leq \abs{\xi}\leq 2^{j}}\abs{D^\beta m(\xi)}^2 d\xi)^{\frac{1}{2}}(\int_{2^{j-1}\leq \abs{\xi}\leq 2^{j}} 1 d\xi)^{\frac{1}{s}-\frac{1}{2}} \\
+        \leq & C_1 (2^{j-1})^{-\abs{\beta}}(2^{j-1})^\frac{n}{2} C_2(2^{j n}-2^{(j-1)n})^{\frac{1}{s}-\frac{1}{2}}                                                        \\
+        =    & C_1C_2 (2^{j-1})^{\frac{n}{2}-\abs{\beta}}(2^{j n}(1-2^{-n}))^{\frac{1}{s}-\frac{1}{2}}                                                                    \\
+        =    & C (1-2^{-n})^{\frac{1}{s}-\frac{1}{2}}(2^{-1})^{\frac{n}{2}-\abs{\beta}}(2^{j})^{\frac{n}{2}-\abs{\beta}}(2^{j n})^{\frac{1}{s}-\frac{1}{2}}               \\
+        \leq & C'(2^{j})^{\frac{n}{2}-\abs{\beta}}(2^{j n})^{\frac{1}{s}-\frac{1}{2}}
+    \end{align*}
+    Using the same argument for the second integral on right hand side:
+    \begin{align*}
+        (\int_{2^{j}\leq \abs{\xi}\leq 2^{j+1}}\abs{D^\beta m(\xi)}^s d\xi)^{\frac{1}{s}} & \leq  C_1 (2^{j})^{-\abs{\beta}}(2^{j})^\frac{n}{2} C_2(2^{(j+1)n}-2^{j n})^{\frac{1}{s}-\frac{1}{2}}      \\
+                                                                                          & =C (2^{n}-1)^{\frac{1}{s}-\frac{1}{2}}(2^{j})^{\frac{n}{2}-\abs{\beta}}(2^{j n})^{\frac{1}{s}-\frac{1}{2}} \\
+                                                                                          & \leq C'(2^{j})^{\frac{n}{2}-\abs{\beta}}(2^{j n})^{\frac{1}{s}-\frac{1}{2}}
+    \end{align*}
+    Thus
+    \begin{equation*}
+        (\int_{2^{j-1}\leq \abs{\xi}\leq 2^{j+1}}\abs{D^\beta m(\xi)}^s d\xi)^{\frac{1}{s}} \leq  C'(2^{j})^{\frac{n}{2}-\abs{\beta}}(2^{j n})^{\frac{1}{s}-\frac{1}{2}}=C'(2^{j})^{-\abs{\beta}+\frac{n}{s}}
+    \end{equation*}
+\end{note}
+\begin{note}[proof of theorem 6.3 in book]
+    By Plancherel's theorem:
+    \begin{equation*}
+        \norm{T^Nf-T_mf}_2=\norm{(m-m^N)\hat{f}}_2=\norm{(m-m^N)}_2\norm{\hat{f}}_2
+    \end{equation*}
+\end{note}
+Thus $T^Nf\to T_mf$ in $L^2$ for every $f\in L^2$.\par
+Generally, $L^p$ convergence does not implies pointwise convergence. But there is a subsequence converges pointwise. Thus we have:
+\begin{equation*}
+    \liminf_{N\to \infty}\abs{T^Nf(x)-T_mf(x)}=0\quad a.e.
+\end{equation*}
+% \begin{align*}
+%     \norm{T_m f(x)}_p \leq\norm{T^N f(x)-T_mf(x)}_p+\norm{T^N f(x)}_p\leq \norm{T^N f(x)-T_mf(x)}_p+C_p\norm{f}_p
+% \end{align*}
+By triangular inequality:
+\begin{align*}
+    (\int\abs{T_m f(x)}^p)^\frac{1}{p} \leq & (\int\abs{T^N f(x)-T_mf(x)}^p)^\frac{1}{p}+\int\abs{T^N f(x)}^p \\
+    \leq                                    & (\int\abs{T^N f(x)-T_mf(x)}^p)^\frac{1}{p}+C_p\norm{f}_p
+\end{align*}
+Take $\liminf$ on both side and use Fatou's Lemma:
+\begin{align*}
+    (\int\abs{T_m f(x)}^p)^\frac{1}{p}\leq & \liminf(\int\abs{T^N f(x)-T_mf(x)}^p)^\frac{1}{p}+C_p\norm{f}_p \\
+    \leq                                   & (\int\liminf\abs{T^N f(x)-T_mf(x)}^p)^\frac{1}{p}+C_p\norm{f}_p \\
+    =                                      & C_p\norm{f}_p
+\end{align*}
+
+\begin{note}[proof of theorem 6.3 in book]\label{Leibnitz rule estimate for tilde m}
+    By Leibnitz rule:
+    \begin{align*}
+        \abs{D^\alpha\tilde{m_j}(\xi)} & =\abs{\sum_{\alpha=\beta+\gamma}\binom{\abs{\alpha}}{\abs{\beta}} D^\beta m_j(\xi)D^\gamma(e^{-2\pi i y\cdot\xi}-1)}                                            \\
+                                       & \leq C\sum_{\alpha=\beta+\gamma}\abs{D^\beta m_j(\xi)}\abs{D^\gamma(e^{-2\pi iy\cdot\xi}-1)}                                                                    \\
+                                       & \leq C'\sum_{\alpha=\beta+\gamma}\abs{y}2^{j(1-\abs{\gamma})}\abs{D^\beta m_j(\xi)}                                                                             \\
+                                       & \leq C'\sum_{\alpha=\beta+\gamma}\abs{y}2^{j(1-\abs{\gamma})}   C''2^{-j\abs{\beta}}\sum_{\abs{\beta'}\leq \abs{\beta}}\abs{D^{\beta'} m(\xi)2^{j\abs{\beta'}}} \\
+                                       & \leq C\sum_{\alpha=\beta+\gamma}\abs{y}2^{j(1-\abs{\alpha})} \sum_{\abs{\beta'}\leq \abs{\beta}}\abs{D^{\beta'} m(\xi)2^{j\abs{\beta'}}}                        \\
+                                       & \leq C\sum_{\abs{\beta}\leq a}\abs{y}2^{j(1-a)} \sum_{\abs{\beta'}\leq \abs{\beta}}\abs{D^{\beta'} m(\xi)2^{j\abs{\beta'}}}                                     \\
+                                       & \leq C\sum_{\abs{\beta}\leq a}\abs{y}2^{j(1-a)} \sum_{\abs{\beta'}\leq {a}}\abs{D^{\beta'} m(\xi)2^{j\abs{\beta'}}}                                             \\
+                                       & = Ca\abs{y}2^{j(1-a)} \sum_{\abs{\beta'}\leq {a}}\abs{D^{\beta'} m(\xi)2^{j\abs{\beta'}}}                                                                       \\
+    \end{align*}
+    Thus
+    \begin{align*}
+        \sup_{\abs{\alpha}=a}\norm{D^\alpha\tilde{m_j}}_s & \leq C\abs{y}2^{j(1-a)} \sum_{\abs{\beta'}\leq {a}}2^{j\abs{\beta'}}\norm{D^{\beta'} m(\xi)}_s        \\
+                                                          & \leq C\abs{y}2^{j(1-a)} \sum_{\abs{\beta'}\leq {a}}2^{j\abs{\beta'}}C2^{j(-\abs{\beta'}+\frac{n}{s})} \\
+                                                          & \leq C'\abs{y}2^{j(1-a)} \sum_{\abs{\beta'}\leq {a}}2^{j\frac{n}{s}}                                  \\
+                                                          & \leq C' a\abs{y}2^{j(1-a+\frac{n}{s})}                                                                \\
+    \end{align*}
+
+
+\end{note}
+\begin{note}[proof of theorem 6.10 in book]
+    We denote $t_j=2^j\abs{y}$
+    \begin{align*}
+             & \int_{\abs{x}>2\abs{y}}{\abs{k^N(x-y)-k^N(x)}\abs{f(x)}dx}                                                                                                                                \\
+        =    & \sum_{j=1}^{\infty}\int_{t_j<\abs{x}\leq 2t_j}{\abs{k^N(x-y)-k^N(x)}\abs{f(x)}dx}                                                                                                         \\
+        \leq & \sum_{j=1}^{\infty}(\int_{t_j<\abs{x}\leq 2t_j}{\abs{k^N(x-y)-k^N(x)}^{q'}dx})^\frac{1}{q'}(\int_{t_j<\abs{x}\leq 2t_j}{\abs{f(x)}^q dx})^\frac{1}{q}                                     \\
+        \leq & \sum_{j=1}^{\infty}(\int_{t_j<\abs{x}}{\abs{k^N(x-y)-k^N(x)}^{q'}dx})^\frac{1}{q'}(\int_{t_j<\abs{x}\leq 2t_j}{\abs{f(x)}^q dx})^\frac{1}{q}                                              \\
+        \leq & (\sum_{j=1}^{\infty}Ct_{j}^{-\epsilon-\frac{n}{q}}\abs{y}^{\epsilon}\abs{B(0,2t_j)}^{\frac{1}{q}})\sup_j{(\frac{1}{\abs{B(0,2t_j)}}\int_{\abs{x}\leq 2t_j}{\abs{f(x)}^q dx})^\frac{1}{q}} \\
+        \leq & C(\sum_{j=1}^{\infty}t_{j}^{-\epsilon-\frac{n}{q}}\abs{y}^{\epsilon}{t_j}^{\frac{n}{q}})M_q f(0)                                                                                          \\
+        =    & C\abs{y}^{\epsilon}(\sum_{j=1}^{\infty}t_{j}^{-\epsilon})M_q f(0)                                                                                                                         \\
+        =    & C\abs{y}^{\epsilon}\abs{y}^{-\epsilon}(\sum_{j=1}^{\infty}2^{-j\epsilon})M_q f(0)                                                                                                         \\
+        =    & C'M_q f(0)                                                                                                                                                                                \\
+    \end{align*}
+    Since we prove that $(T_mf)^\#(0)\leq A_n\sup_{\epsilon>0}\epsilon^{-n}\int_{\abs{x}\leq\frac{\epsilon}{2}}\abs{f(y)-I_\epsilon}dy$ and using lemma 5.11 in book:
+    \begin{align*}
+             & \epsilon^{-n}\int_{\abs{x}<\frac{\epsilon}{2}}{\abs{Tf(x)-I_\epsilon}dx}                                    \\
+        \leq & C_qM_qf(0)+\epsilon^{-n}\iint_{2\abs{x}<\epsilon<\abs{y}}{\abs{K(x-y)-K(-y)}\abs{f(y)}dxd y}                \\
+        \leq & C_qM_qf(0)+\epsilon^{-n}\int_{2\abs{x}<\epsilon}{(\int_{2\abs{x}<\abs{y}}\abs{K(y-x)-K(y)}\abs{f(y)}d y)dx} \\
+        \leq & C_qM_qf(0)+\epsilon^{-n}\int_{2\abs{x}<\epsilon}{(C'M_q f(0))dx}                                            \\
+        \leq & C_qM_qf(0)+C''M_q f(0)                                                                                      \\
+        \leq & CM_q f(0)
+    \end{align*}
+    Thus  $(T^Nf)^\#(0)\leq CM_qf(0)$.
+\end{note}
+\begin{note}[proof of (6.11) in book]
+    First we prove a variant of Lemma 6.6:
+    \begin{equation}\label{variant of lemma 6.6}
+        (\int_{\abs{x}>t}\abs{k(x)}^{q'}dx)^\frac{1}{q'}\leq C t^{\epsilon-\frac{n}{q}}\max_{\abs{\alpha}=a}{\norm{D^{\alpha}\hat{k}}_s}\quad (0<t<\infty)
+    \end{equation}
+    The proof is entirely similar with lemma 6.6, but Holder's inequality is applied
+    in the form: $\norm{\cdot}_{q'}\leq \norm{\cdot}_{r}\norm{\cdot}_{s'}$, with $\frac{1}{r}=\frac{1}{s}-\frac{1}{q}$. Notice $-ar+n-1<-1$ by $a-\frac{n}{s}=\epsilon>-\frac{1}{q}$, the second integral on right hand side converges.
+    \begin{align*}
+        (\int_{\abs{x}>t}\abs{k(x)}^{q'}dx)^\frac{1}{q'} & \leq C(\int_{}(\sum_{j=1}^n(\abs{x_j^ak(x)})^{s'})dx)^{\frac{1}{s'}}  (\int_{\abs{x}>t}^{} \frac{1}{\abs{x}^{ar}}dx)^{\frac{1}{r}} \\
+                                                         & \leq C\sum_{j=1}^n(\int_{}\abs{x_j^ak(x)}^{s'}dx)^{\frac{1}{s'}}  (t^{n-a r})^{\frac{1}{r}}                                        \\
+                                                         & \leq C\max_{\abs{\alpha}=a}{\norm{D^\alpha\hat{k}}_s}  (t^{\frac{n}{r}-a})                                                         \\
+    \end{align*}
+    By $\frac{n}{r}-a=\frac{n}{s}-\frac{n}{q}-a=-\epsilon-\frac{n}{q}$, we have proof inequality \eqref{variant of lemma 6.6}.\par
+    Now we prove:
+    \[
+        (\int_{\abs{x}>2t}\absl{k_j(x-y)-k_j(x)}^{q'}dx)^\frac{1}{q'}\leq\left\{
+        \begin{aligned}
+            Ct^{-\epsilon-\frac{n}{q}}2^{-j\epsilon}\quad (2^j\abs{y}\geq 1) \\
+            C t^{-\epsilon-\frac{n}{q}} \abs{y}2^{j(1-\epsilon)}\quad (2^j\abs{y}<1)
+        \end{aligned}
+        \right.
+    \]
+
+    The first inequality is by inequality \eqref{variant of lemma 6.6} and inequality (6.7) in book:
+    \begin{equation*}
+        \norm{D^{\alpha}m_j}_s\leq C 2^{j(-\abs{\alpha}+\frac{n}{s})}\quad (\abs{\alpha}\leq a; 1\leq s\leq 2)
+    \end{equation*}
+    we have
+    \begin{equation}\label{variant 2 of lemma 6.6}
+        (\int_{\abs{x}>t}\abs{k_j(x)}^{q'}dx)^\frac{1}{q'}\leq Ct^{-\epsilon-\frac{n}{q}}2^{-j\epsilon}
+    \end{equation}
+
+
+    The proof of the second inequality is similar with (6.9) in book. By the same argument as
+    above, we have
+    \begin{equation*}
+        (\int_{\abs{x}>t}\absl{\tilde{k_j}(x)}^{q'}dx)^\frac{1}{q'} \leq C t^{-\epsilon-\frac{n}{q}} \max_{\abs{\alpha}=a}{\norm{D^\alpha\hat{\tilde{k_j}}}_s}
+    \end{equation*}
+    By $\hat{\tilde{k}}=\tilde{m}$ and inequality (6.9) in book
+    \begin{equation*}
+        \sup_{\abs{\alpha}=a}\norm{D^{\alpha}\tilde{m_j}}_s\leq C \abs{y}2^{j(1-a+\frac{n}{s})}=C \abs{y}2^{j(1-\epsilon)}\quad (1\leq s\leq 2; 2^j\abs{y}<1)
+    \end{equation*}
+    , we have:
+    \begin{equation}\label{variant of 6.9}
+        (\int_{\abs{x}>t}\absl{\tilde{k_j}(x)}^{q'}dx)^\frac{1}{q'} \leq C t^{-\epsilon-\frac{n}{q}} \abs{y}2^{j(1-\epsilon)}\quad (1\leq s\leq 2; 2^j\abs{y}<1)
+    \end{equation}
+
+    Now by inequality \eqref{variant 2 of lemma 6.6} and inequality \eqref{variant of 6.9} we have:
+    \[
+        (\int_{\abs{x}>2t}\absl{k_j(x-y)-k_j(x)}^{q'}dx)^\frac{1}{q'}\leq\left\{
+        \begin{aligned}
+            Ct^{-\epsilon-\frac{n}{q}}2^{-j\epsilon}\quad (2^j\abs{y}\geq 1) \\
+            C t^{-\epsilon-\frac{n}{q}} \abs{y}2^{j(1-\epsilon)}\quad (2^j\abs{y}<1)
+        \end{aligned}
+        \right.
+    \]
+    Finally, by summing with different part of index, (6.11) is an easy consequence of above inequality.
+\end{note}
+\begin{note}[proof of (6.14) in book]
+    By definition of subalgebra, we only need to check that $T_{am_1+bm_2}$, $T_{m_1m_2}$ are bounded. These are easy since $T_m$ is linear on $m$ and $T_{m_1m_2}=T_{m_1}T_{m_2}$. Suppose the affine transformations $A(x)=h+L(x)$ where $L$ is linear transformation. {\color{blue} I don't know why the following holds:
+            \begin{equation*}
+                (f\circ A)^\wedge(\xi)=e^{2\pi i h\cdot\tilde{L}(\xi)}\abs{\det{L}}^{-1}\hat{f}(\tilde{L}(\xi))
+            \end{equation*}
+            with $\tilde{L}=(L^*)^{-1}$ and how this implies multipliers are invariant under transformation $A$}.
+\end{note}
+
+\end{document}
+

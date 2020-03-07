@@ -1,0 +1,44 @@
+\contentsline {chapter}{\numberline {1}Classical Theory of Hardy Space}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Harmonic Functions, Poisson Representation}{3}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Harmonic function to Poisson integral (or Poisson representation of harmonic function)}{4}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Poisson integral indicates harmonic}{6}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}Boundary behavior of Poisson integral (or norm convergence and pointwise convergence)}{6}{subsection.1.1.3}%
+\contentsline {subsection}{\numberline {1.1.4}Harmonic function in higher dimension}{8}{subsection.1.1.4}%
+\contentsline {section}{\numberline {1.2}Subharmonic Functions}{9}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Upper semicontinuous}{9}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Property of subharmonic function}{10}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}Estimation for zeroes of holomorphic function}{11}{subsection.1.2.3}%
+\contentsline {section}{\numberline {1.3}F.Riesz Factorization Theorem}{14}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Result of non-vanish case}{15}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Result of $H^p$ case}{16}{subsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.3.3}$H^1$ function and its boundary}{17}{subsection.1.3.3}%
+\contentsline {section}{\numberline {1.4}Some Classical Inequalities}{18}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Hardy's inequality}{19}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Fejer-Riesz inequality}{20}{subsection.1.4.2}%
+\contentsline {section}{\numberline {1.5}The Conjugate Function}{21}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}Estimate conjugate function $\tilde {f}$ for $f\in L^p$, $1<p<\infty $}{22}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}Estimate conjugate function $\tilde {f}$ for $f\in L^1$}{24}{subsection.1.5.2}%
+\contentsline {subsection}{\numberline {1.5.3}Conjugate function and $H^p$ space}{25}{subsection.1.5.3}%
+\contentsline {subsection}{\numberline {1.5.4}Conjugate operator}{25}{subsection.1.5.4}%
+\contentsline {section}{\numberline {1.6}$H^p$ as a Linear Space}{27}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}$H^p$ is not Locally convex for $0<p<1$}{27}{subsection.1.6.1}%
+\contentsline {subsection}{\numberline {1.6.2}Dual of $H^p$}{28}{subsection.1.6.2}%
+\contentsline {section}{\numberline {1.7}Canonical Factorization Theorem}{30}{section.1.7}%
+\contentsline {subsection}{\numberline {1.7.1}Canonical factorization}{31}{subsection.1.7.1}%
+\contentsline {subsection}{\numberline {1.7.2}Outer function}{32}{subsection.1.7.2}%
+\contentsline {subsection}{\numberline {1.7.3}Inner function}{32}{subsection.1.7.3}%
+\contentsline {section}{\numberline {1.8}The Helson-Szego Theorem}{33}{section.1.8}%
+\contentsline {subsection}{\numberline {1.8.1}Distance from constant function 1 to space $\mathscr {P}(0)$}{34}{subsection.1.8.1}%
+\contentsline {subsection}{\numberline {1.8.2}The Helson-Szego theorem}{34}{subsection.1.8.2}%
+\contentsline {chapter}{\numberline {2}Calderon-Zygmund Theory}{38}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Singular Integral Operators}{38}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Hormander's condition}{38}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Estimation of singular integral operator}{40}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Restriction and extension of singular integral operator}{42}{subsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.1.4}More precise estimation for more regular kernel}{43}{subsection.2.1.4}%
+\contentsline {subsection}{\numberline {2.1.5}Proof of proposition 5.5 and 5.6 in book}{44}{subsection.2.1.5}%
+\contentsline {section}{\numberline {2.2}Multipliers}{46}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Hormander-Mihlin multiplier theorem}{47}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}More precise estimation for more regular multiplier}{48}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Some properties of multipliers}{48}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Details of proof and errata}{49}{subsection.2.2.4}%

@@ -1,11 +1,34 @@
 \documentclass{report}
+\usepackage[hidelinks]{hyperref}
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{xcolor}
 \usepackage{mathrsfs}
-\newtheorem{remark}{Remark}
+\usepackage[framemethod=tikz]{mdframed}
+
+
+\theoremstyle{definition}
+\newmdtheoremenv[
+  hidealllines=true,
+  leftline=true,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=0pt,
+]{remark}{Remark}
+\newtheorem{note}{Note}
+
+\theoremstyle{definition}
+\newmdtheoremenv[
+    hidealllines=true,
+    innerleftmargin=0pt,
+    innerrightmargin=0pt,
+    fontcolor=red
+]{errata}{Errata}
+% \newtheorem{remark}{Remark}
+
+\theoremstyle{plain}
 \newtheorem{theorem}{Theorem}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -13,6 +36,7 @@
 \newtheorem{corollary}[theorem]{Corollary}
 \numberwithin{theorem}{subsection}
 \numberwithin{remark}{subsection}
+\numberwithin{equation}{section}
 \newcommand{\norm}[1]{\lVert#1\rVert}
 \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
 \newcommand{\absl}[1]{\lvert#1\rvert}
@@ -21,7 +45,11 @@
 \newcommand{\sgn}{\operatorname{sgn}}
 \newcommand{\sign}{\operatorname{sign}}
 \newcommand{\BMO}{\operatorname{BMO}}
+\newcommand{\argmax}{\operatorname{argmax}}
+\newcommand{\supp}{\operatorname{supp}}
+
 \begin{document}
+\tableofcontents
 \input{Chapter1/section1}
 \input{Chapter1/section2}
 \input{Chapter1/section3}
@@ -32,6 +60,7 @@
 \input{Chapter1/section8}
 \input{Chapter2/section1}
 \input{Chapter2/section5}
+\input{Chapter2/section6}
 \end{document}
 
 
